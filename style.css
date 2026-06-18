@@ -1,378 +1,85 @@
-/* Գլխավոր Փոփոխականներ */
 :root {
-    --bg-main: #0b0f19;
-    --bg-surface: #121826;
-    --bg-code: #05070c;
-    --primary: #00f2fe;
-    --primary-glow: rgba(0, 242, 254, 0.3);
-    --accent: #4ade80;
-    --text-main: #f3f4f6;
-    --text-muted: #9ca3af;
-    --border: rgba(255, 255, 255, 0.08);
+    --bg-dark: #070a12;
+    --bg-panel: #0d1321;
+    --accent-blue: #00f2fe;
+    --accent-green: #39ff14;
+    --accent-red: #ff3333;
+    --text-light: #e2e8f0;
+    --text-muted: #64748b;
+    --border-color: #1e293b;
+    --font-mono: 'Courier New', Courier, monospace;
 }
 
-/* Բազային Կարգավորումներ */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 body {
-    background-color: var(--bg-main);
-    color: var(--text-main);
-    line-height: 1.6;
-    overflow-x: hidden;
+    background-color: var(--bg-dark); color: var(--text-light); line-height: 1.5;
 }
 
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-}
+.container { width: 90%; max-width: 1200px; margin: 0 auto; }
+.section { padding: 60px 0; border-bottom: 1px solid var(--border-color); }
+.bg-alt { background-color: #0b0f19; }
 
-/* Նավիգացիա */
+/* Navbar */
 .navbar {
-    background-color: rgba(11, 15, 25, 0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    padding: 15px 0;
+    background-color: var(--bg-panel); padding: 15px 0;
+    border-bottom: 2px solid var(--border-color); position: sticky; top: 0; z-index: 100;
 }
+.navbar .container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: var(--font-mono); font-weight: bold; color: #fff; font-size: 1.2rem; }
+.logo span { color: var(--accent-blue); }
+.nav-menu a { color: var(--text-muted); text-decoration: none; margin-left: 20px; font-weight: 500; font-size: 0.95rem; }
+.nav-menu a:hover { color: var(--accent-blue); }
 
-.navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* Tech Typography */
+.tech-title { font-family: var(--font-mono); font-size: 1.8rem; margin-bottom: 10px; border-left: 4px solid var(--accent-blue); padding-left: 12px; }
+.tech-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 30px; }
+
+/* 1. Interactive Architecture Graph */
+.arch-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 20px; }
+.arch-graph { display: flex; flex-direction: column; align-items: center; }
+.arch-layer {
+    background: var(--bg-panel); border: 1px solid var(--border-color); width: 100%;
+    padding: 20px; text-align: center; border-radius: 6px; cursor: pointer; transition: all 0.2s;
 }
+.arch-layer:hover { border-color: var(--accent-blue); box-shadow: 0 0 10px rgba(0, 242, 254, 0.2); }
+.arch-layer h4 { font-family: var(--font-mono); margin-bottom: 5px; color: #fff; }
+.arch-layer p { font-size: 0.85rem; color: var(--text-muted); }
+.arch-vector { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin: 10px 0; }
+.arch-details-box { background: #0b0f19; border: 1px solid var(--border-color); padding: 25px; border-radius: 6px; }
+.arch-details-box h3 { font-family: var(--font-mono); font-size: 1.2rem; margin-bottom: 15px; color: var(--accent-blue); }
 
-.logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: 1px;
+/* 2. Terminal Live Log */
+.terminal-container { background: #020408; border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; }
+.terminal-ctrls { background: #111827; padding: 10px; display: flex; gap: 10px; border-bottom: 1px solid var(--border-color); }
+.ctrl-btn {
+    background: #1e293b; border: 1px solid var(--border-color); color: #fff; padding: 6px 14px;
+    border-radius: 4px; font-size: 0.85rem; cursor: pointer; font-family: var(--font-mono);
 }
+.ctrl-btn:hover { background: #334155; color: var(--accent-blue); }
+.ctrl-btn.danger { border-color: var(--accent-red); }
+.ctrl-btn.danger:hover { background: var(--accent-red); color: #fff; }
+.terminal-screen { padding: 20px; height: 250px; overflow-y: auto; font-family: var(--font-mono); font-size: 0.9rem; }
+.system-msg { color: #cbd5e1; margin-bottom: 6px; }
 
-.logo span {
-    color: var(--primary);
-}
+/* 3. MMU Calculator & Tables */
+.calc-container { display: grid; grid-template-columns: 1fr 2fr; gap: 40px; background: var(--bg-panel); padding: 30px; border-radius: 6px; border: 1px solid var(--border-color); }
+.calc-inputs { display: flex; flex-direction: column; gap: 10px; }
+.calc-inputs label { font-family: var(--font-mono); font-size: 0.9rem; }
+.calc-inputs input { background: #020408; border: 1px solid var(--border-color); padding: 10px; border-radius: 4px; color: var(--accent-green); font-family: var(--font-mono); font-size: 1.1rem; }
+.btn-primary { background: var(--accent-blue); color: #000; border: none; padding: 12px; font-weight: bold; border-radius: 4px; cursor: pointer; font-size: 0.95rem; }
+.tech-table { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.85rem; }
+.tech-table th, .tech-table td { border: 1px solid var(--border-color); padding: 10px; text-align: left; }
+.tech-table th { background: #161f30; color: #fff; }
+.tech-table td:nth-child(2) { color: var(--accent-green); }
 
-.pulse-icon {
-    color: var(--primary);
-    margin-right: 8px;
-    animation: iconPulse 2s infinite;
-}
+/* 4. Code Blocks */
+.code-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.code-box { background: #020408; border: 1px solid var(--border-color); border-radius: 6px; padding: 20px; }
+.code-box h4 { font-family: var(--font-mono); margin-bottom: 10px; color: var(--accent-blue); }
+pre { overflow-x: auto; font-family: var(--font-mono); font-size: 0.85rem; color: #a7f3d0; }
 
-.nav-menu a {
-    color: var(--text-muted);
-    text-decoration: none;
-    margin-left: 20px;
-    font-weight: 500;
-    transition: color 0.3s;
-}
-
-.nav-menu a:hover, .nav-menu a.active {
-    color: var(--primary);
-}
-
-/* Hero Section */
-.hero-section {
-    padding: 140px 0 80px 0;
-    background: radial-gradient(circle at 80% 20%, rgba(0, 242, 254, 0.08) 0%, transparent 50%);
-}
-
-.hero-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: center;
-}
-
-.badge {
-    background: rgba(0, 242, 254, 0.1);
-    color: var(--primary);
-    border: 1px solid rgba(0, 242, 254, 0.2);
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    display: inline-block;
-    margin-bottom: 15px;
-}
-
-.hero-text h1 {
-    font-size: 3.2rem;
-    line-height: 1.2;
-    margin-bottom: 20px;
-    background: linear-gradient(135deg, #ffffff 0%, #a5f3fc 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.hero-text p {
-    color: var(--text-muted);
-    font-size: 1.15rem;
-    margin-bottom: 30px;
-}
-
-/* Կոճակներ */
-.btn {
-    display: inline-block;
-    padding: 12px 28px;
-    border-radius: 6px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.btn-primary {
-    background-color: var(--primary);
-    color: #0b0f19;
-}
-
-.btn-primary:hover {
-    box-shadow: 0 0 20px var(--primary-glow);
-    transform: translateY(-2px);
-}
-
-.btn-outline {
-    border: 1px solid var(--border);
-    color: var(--text-main);
-    margin-left: 15px;
-}
-
-.btn-outline:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-    border-color: var(--text-muted);
-}
-
-/* Terminal Mockup */
-.terminal-mockup {
-    background-color: var(--bg-code);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    overflow: hidden;
-}
-
-.terminal-header {
-    background-color: #1a2333;
-    padding: 10px 15px;
-    display: flex;
-    align-items: center;
-}
-
-.dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    margin-right: 8px;
-}
-
-.red { background-color: #ef4444; }
-.yellow { background-color: #eab308; }
-.green { background-color: #22c55e; }
-
-.terminal-title {
-    font-family: monospace;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.terminal-body {
-    padding: 20px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.95rem;
-}
-
-.terminal-body p { margin-bottom: 8px; }
-.cmd .user { color: var(--primary); }
-.output { color: #d1d5db; }
-.output.success { color: var(--accent); }
-
-.blink {
-    animation: blinker 1s linear infinite;
-    color: var(--primary);
-    display: inline-block;
-}
-
-/* Ֆունկցիաներ (Cards) */
-.features-section, .docs-section, .source-section {
-    padding: 80px 0;
-}
-
-.section-title {
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 50px;
-    position: relative;
-}
-
-.section-title::after {
-    content: '';
-    display: block;
-    width: 50px;
-    height: 3px;
-    background-color: var(--primary);
-    margin: 10px auto 0 auto;
-    border-radius: 2px;
-}
-
-.grid-3 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-
-.feature-card {
-    background-color: var(--bg-surface);
-    border: 1px solid var(--border);
-    padding: 30px;
-    border-radius: 8px;
-    transition: transform 0.3s;
-}
-
-.feature-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(0, 242, 254, 0.3);
-}
-
-.icon-box {
-    font-size: 2rem;
-    color: var(--primary);
-    margin-bottom: 20px;
-}
-
-.feature-card h3 { margin-bottom: 12px; }
-.feature-card p { color: var(--text-muted); font-size: 0.95rem; }
-
-/* Ուղեցույցների Թաբեր (Tabs) */
-.docs-container {
-    background-color: var(--bg-surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.docs-tabs {
-    display: flex;
-    background-color: #161f30;
-    border-bottom: 1px solid var(--border);
-}
-
-.tab-btn {
-    background: none;
-    border: none;
-    color: var(--text-muted);
-    padding: 15px 25px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.tab-btn.active {
-    color: var(--primary);
-    background-color: var(--bg-surface);
-    border-top: 2px solid var(--primary);
-}
-
-.docs-content { padding: 30px; }
-.tab-panel { display: none; }
-.tab-panel.active { display: block; }
-
-.docs-content h3 { margin-bottom: 15px; }
-.docs-content pre {
-    background-color: var(--bg-code);
-    padding: 20px;
-    border-radius: 6px;
-    overflow-x: auto;
-    margin-top: 15px;
-    border: 1px solid var(--border);
-}
-
-.docs-content code {
-    font-family: monospace;
-    color: #e2e8f0;
-}
-
-/* Ռեպոզիտորիաներ */
-.repo-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-}
-
-.repo-card {
-    background-color: var(--bg-surface);
-    border: 1px solid var(--border);
-    padding: 25px;
-    border-radius: 8px;
-}
-
-.repo-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.repo-badge {
-    background-color: rgba(255,255,255,0.08);
-    padding: 3px 10px;
-    border-radius: 12px;
-    font-size: 0.8rem;
-}
-
-.repo-badge.kernel {
-    background-color: rgba(74, 222, 128, 0.1);
-    color: var(--accent);
-    border: 1px solid rgba(74, 222, 128, 0.2);
-}
-
-.repo-card p {
-    color: var(--text-muted);
-    margin-bottom: 20px;
-    font-size: 0.95rem;
-}
-
-.repo-link {
-    color: var(--primary);
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.repo-link:hover { text-decoration: underline; }
-
-/* Footer */
-.main-footer {
-    text-align: center;
-    padding: 30px 0;
-    border-top: 1px solid var(--border);
-    color: var(--text-muted);
-    font-size: 0.9rem;
-}
-
-/* Անիմացիաներ */
-@keyframes blinker { 50% { opacity: 0; } }
-@keyframes iconPulse {
-    0% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.1); opacity: 0.8; }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-/* Մոբիլ Սարքերի Համար (Responsive) */
-@media (max-width: 768px) {
-    .hero-grid { grid-template-columns: 1fr; text-align: center; }
-    .nav-menu { display: none; } /* Պարզության համար */
-    .repo-grid { grid-template-columns: 1fr; }
-    .hero-text h1 { font-size: 2.3rem; }
-    .btn-outline { margin-left: 0; margin-top: 10px; display: block; }
-}
+.tech-footer { text-align: center; padding: 25px; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.8rem; }
