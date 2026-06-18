@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AweOS | Պաշտոնական Կայք</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fa-solid fa-terminal pulse-icon"></i> Awe<span>OS</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="#hero" class="nav-link active">Գլխավոր</a>
+                <a href="#about" class="nav-link">Մասին</a>
+                <a href="#docs" class="nav-link">Ուղեցույցներ</a>
+                <a href="#source" class="nav-link">Կոդեր</a>
+            </nav>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <section id="hero" class="hero-section">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <span class="badge">AweOS Project v0.1.0</span>
+                <h1>The Next-Gen Operating System</h1>
+                <p>Անվտանգ, արագ և ցածր մակարդակի վերահսկողությամբ օպերացիոն համակարգ՝ կառուցված <strong>Rust, C և C++</strong> լեզուներով։ Ստեղծված է ապագայի hardware-ի համար։</p>
+                <div class="hero-actions">
+                    <a href="#docs" class="btn btn-primary"><i class="fa-solid fa-book"></i> Ուղեցույց</a>
+                    <a href="#source" class="btn btn-outline"><i class="fa-brands fa-github"></i> GitHub Ռեպոներ</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="terminal-mockup">
+                    <div class="terminal-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                        <span class="terminal-title">cellkernel@aweos:~</span>
+                    </div>
+                    <div class="terminal-body">
+                        <p class="cmd"><span class="user">guest@aweos:~$</span> boot --kernel=cellkernel</p>
+                        <p class="output">[INFO] Initializing CellKernel...</p>
+                        <p class="output">[INFO] Managing hardware interrupts...</p>
+                        <p class="output">[INFO] System paging enabled successfully.</p>
+                        <p class="output success">[SUCCESS] AweOS Kernel is Ready.</p>
+                        <p class="blink">_</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="features-section">
+        <div class="container">
+            <h2 class="section-title">Համակարգի Հիմքերը</h2>
+            <div class="grid-3">
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-microchip"></i></div>
+                    <h3>CellKernel Միջուկ</h3>
+                    <p>Մեր սեփական միջուկը, որը կառավարում է պրոցեսները, հիշողությունը և hardware ընդհատումները (interrupts)։</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-solid fa-memory"></i></div>
+                    <h3>Էջավորում (Paging)</h3>
+                    <p>Հիշողության առաջադեմ կառավարում և անվտանգության մակարդակների խիստ սահմանազատում մոդուլների միջև։</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-box"><i class="fa-brands fa-rust"></i></div>
+                    <h3>Rust & C/C++</h3>
+                    <p>Rust-ի հուսալիությունն ու memory-safety-ն միախառնված C և C++ լեզուների բացարձակ արագության հետ։</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="docs" class="docs-section">
+        <div class="container">
+            <h2 class="section-title">Կոդավորման Ուղեցույցներ</h2>
+            <div class="docs-container">
+                <div class="docs-tabs">
+                    <button class="tab-btn active" onclick="openTab(event, 'setup')">Միջավայրի Կարգավորում</button>
+                    <button class="tab-btn" onclick="openTab(event, 'compile')">Կոմպիլյացիա</button>
+                </div>
+                <div class="docs-content">
+                    <div id="setup" class="tab-panel active">
+                        <h3>Ինչպես պատրաստել համակարգը</h3>
+                        <p>AweOS-ը հավաքելու համար ձեզ հարկավոր է ունենալ Rust toolchain և հիմնական կոմպիլյատորները։</p>
+                        <pre><code># Տեղադրել անհրաժեշտ գործիքները
+$ rustup target add x86_64-unknown-none
+$ sudo apt install build-essential bison flex libgmp3-dev libmpfr-dev libmpc-dev</code></pre>
+                    </div>
+                    <div id="compile" class="tab-panel">
+                        <h3>Միջուկի Build տարբերակը</h3>
+                        <p>Անցեք CellKernel թղթապանակ և գործարկեք հետևյալ հրամանները` ISO ֆայլը ստանալու համար։</p>
+                        <pre><code># Հավաքել նախագիծը
+$ cargo build --release
+# Ստեղծել bootable ISO հնարավորություն
+$ make iso</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="source" class="source-section">
+        <div class="container">
+            <h2 class="section-title">Ռեպոզիտորիաներ</h2>
+            <div class="repo-grid">
+                <div class="repo-card">
+                    <div class="repo-meta">
+                        <h4>AweOS / Main</h4>
+                        <span class="repo-badge">Public</span>
+                    </div>
+                    <p>Օպերացիոն համակարգի գլխավոր բազան, համակարգային ֆայլերը և UI շերտը։</p>
+                    <a href="https://github.com" target="_blank" class="repo-link">Անցնել Ռեպոզիտորիա <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+                <div class="repo-card">
+                    <div class="repo-meta">
+                        <h4>AweOS / CellKernel</h4>
+                        <span class="repo-badge kernel">Kernel</span>
+                    </div>
+                    <p>Rust-ով գրված սուրբ միջուկը։ Կապ hardware-ի հետ, interrupts և paging հիշողություն։</p>
+                    <a href="https://github.com" target="_blank" class="repo-link">Անցնել Ռեպոզիտորիա <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2026 AweOS Project. Բոլոր իրավունքները պաշտպանված են։</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
