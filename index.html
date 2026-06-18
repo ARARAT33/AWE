@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AweOS | Պաշտոնական Կայք</title>
+    <title>AweOS Core | Kernel Space Platform</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -11,135 +11,142 @@
 
     <header class="navbar">
         <div class="container">
-            <div class="logo">
-                <i class="fa-solid fa-terminal pulse-icon"></i> Awe<span>OS</span>
-            </div>
+            <div class="logo"><i class="fa-solid fa-microchip"></i> AweOS_Core::<span>init()</span></div>
             <nav class="nav-menu">
-                <a href="#hero" class="nav-link active">Գլխավոր</a>
-                <a href="#about" class="nav-link">Մասին</a>
-                <a href="#docs" class="nav-link">Ուղեցույցներ</a>
-                <a href="#source" class="nav-link">Կոդեր</a>
+                <a href="#architecture">Ճարտարապետություն</a>
+                <a href="#simulator">Kernel_Log</a>
+                <a href="#calculator">MMU_Calc</a>
+                <a href="#docs">Dev_Docs</a>
             </nav>
-            <div class="menu-toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
         </div>
     </header>
 
-    <section id="hero" class="hero-section">
-        <div class="container hero-grid">
-            <div class="hero-text">
-                <span class="badge">AweOS Project v0.1.0</span>
-                <h1>The Next-Gen Operating System</h1>
-                <p>Անվտանգ, արագ և ցածր մակարդակի վերահսկողությամբ օպերացիոն համակարգ՝ կառուցված <strong>Rust, C և C++</strong> լեզուներով։ Ստեղծված է ապագայի hardware-ի համար։</p>
-                <div class="hero-actions">
-                    <a href="#docs" class="btn btn-primary"><i class="fa-solid fa-book"></i> Ուղեցույց</a>
-                    <a href="#source" class="btn btn-outline"><i class="fa-brands fa-github"></i> GitHub Ռեպոներ</a>
+    <section id="architecture" class="section">
+        <div class="container">
+            <h2 class="tech-title">CellKernel Low-Level Architecture</h2>
+            <p class="tech-desc">Սեղմիր շերտերի (layers) վրա՝ ներքին կառուցվածքի մանրամասները տեսնելու համար։</p>
+            
+            <div class="arch-container">
+                <div class="arch-graph">
+                    <div class="arch-layer user-space" onclick="showArchDetails('user')">
+                        <h4>User Space (Ring 3)</h4>
+                        <p>Applications & System Utilities</p>
+                    </div>
+                    <div class="arch-vector"><i class="fa-solid fa-arrow-down"></i> System Calls (INT 0x80 / `syscall`)</div>
+                    
+                    <div class="arch-layer kernel-space" onclick="showArchDetails('kernel')">
+                        <h4>CellKernel Core (Ring 0)</h4>
+                        <p>Memory Management | Interrupts Handler | Scheduler</p>
+                    </div>
+                    <div class="arch-vector"><i class="fa-solid fa-arrow-down"></i> Hardware Abstraction Layer (HAL)</div>
+                    
+                    <div class="arch-layer hardware-space" onclick="showArchDetails('hardware')">
+                        <h4>Hardware Layer</h4>
+                        <p>CPU (x86_64/ARM) | MMU | APIC / PIC</p>
+                    </div>
                 </div>
-            </div>
-            <div class="hero-visual">
-                <div class="terminal-mockup">
-                    <div class="terminal-header">
-                        <span class="dot red"></span>
-                        <span class="dot yellow"></span>
-                        <span class="dot green"></span>
-                        <span class="terminal-title">cellkernel@aweos:~</span>
-                    </div>
-                    <div class="terminal-body">
-                        <p class="cmd"><span class="user">guest@aweos:~$</span> boot --kernel=cellkernel</p>
-                        <p class="output">[INFO] Initializing CellKernel...</p>
-                        <p class="output">[INFO] Managing hardware interrupts...</p>
-                        <p class="output">[INFO] System paging enabled successfully.</p>
-                        <p class="output success">[SUCCESS] AweOS Kernel is Ready.</p>
-                        <p class="blink">_</p>
-                    </div>
+                
+                <div class="arch-details-box" id="arch-details">
+                    <h3><i class="fa-solid fa-circle-info"></i> Ճարտարապետության Մոնիտոր</h3>
+                    <p>Ընտրիր որևէ շերտ ձախ կողմից՝ CellKernel-ի ներքին մեխանիզմների տեխնիկական նկարագրությունը կարդալու համար։</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="features-section">
+    <section id="simulator" class="section bg-alt">
         <div class="container">
-            <h2 class="section-title">Համակարգի Հիմքերը</h2>
-            <div class="grid-3">
-                <div class="feature-card">
-                    <div class="icon-box"><i class="fa-solid fa-microchip"></i></div>
-                    <h3>CellKernel Միջուկ</h3>
-                    <p>Մեր սեփական միջուկը, որը կառավարում է պրոցեսները, հիշողությունը և hardware ընդհատումները (interrupts)։</p>
+            <h2 class="tech-title">CellKernel Live Log Monitor</h2>
+            <p class="tech-desc">Համակարգային լոգերի սիմուլյատոր։ Գեներացրու տարբեր իրավիճակներ (IRQ հարցումներ, Memory Allocation կամ կրիտիկական Panic)։</p>
+            
+            <div class="terminal-container">
+                <div class="terminal-ctrls">
+                    <button class="ctrl-btn" onclick="triggerLog('irq')"><i class="fa-solid fa-bolt"></i> Trigger IRQ</button>
+                    <button class="ctrl-btn" onclick="triggerLog('malloc')"><i class="fa-solid fa-memory"></i> kmalloc() Allocation</button>
+                    <button class="ctrl-btn danger" onclick="triggerLog('panic')"><i class="fa-solid fa-triangle-exclamation"></i> KERNEL PANIC</button>
+                    <button class="ctrl-btn" onclick="clearTerminal()"><i class="fa-solid fa-trash"></i> Clear</button>
                 </div>
-                <div class="feature-card">
-                    <div class="icon-box"><i class="fa-solid fa-memory"></i></div>
-                    <h3>Էջավորում (Paging)</h3>
-                    <p>Հիշողության առաջադեմ կառավարում և անվտանգության մակարդակների խիստ սահմանազատում մոդուլների միջև։</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon-box"><i class="fa-brands fa-rust"></i></div>
-                    <h3>Rust & C/C++</h3>
-                    <p>Rust-ի հուսալիությունն ու memory-safety-ն միախառնված C և C++ լեզուների բացարձակ արագության հետ։</p>
+                <div class="terminal-screen" id="terminal-log">
+                    <p class="system-msg">[0.000000] Booting AweOS CellKernel via Multiboot2...</p>
+                    <p class="system-msg">[0.002015] CPU0: Intel(R) Core(TM) / AMD x86_64 Architecture detected.</p>
+                    <p class="system-msg">[0.005120] MMU: Paging initialized. CR3 register loaded with Page Directory Base.</p>
+                    <p class="system-msg">[0.008440] IDT: Interrupt Descriptor Table loaded. 256 vectors operational.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="docs" class="docs-section">
+    <section id="calculator" class="section">
         <div class="container">
-            <h2 class="section-title">Կոդավորման Ուղեցույցներ</h2>
-            <div class="docs-container">
-                <div class="docs-tabs">
-                    <button class="tab-btn active" onclick="openTab(event, 'setup')">Միջավայրի Կարգավորում</button>
-                    <button class="tab-btn" onclick="openTab(event, 'compile')">Կոմպիլյացիա</button>
+            <h2 class="tech-title">Virtual Address Translation Tool (MMU)</h2>
+            <p class="tech-desc">Մուտքագրիր 32-բիթանոց հեդսադեցիմալ (Hex) վիրտուալ հասցե՝ տեսնելու, թե ինչպես է CellKernel-ի MMU-ն այն բաժանում Page Directory, Page Table և Byte Offset-ի (4KB էջերի դեպքում)։</p>
+            
+            <div class="calc-container">
+                <div class="calc-inputs">
+                    <label for="hex-address">Virtual Address (Hex):</label>
+                    <input type="text" id="hex-address" value="0x3A4F1C04" placeholder="Օրինակ՝ 0x3A4F1C04">
+                    <button class="btn btn-primary" onclick="calculateAddress()">Translate Address</button>
                 </div>
-                <div class="docs-content">
-                    <div id="setup" class="tab-panel active">
-                        <h3>Ինչպես պատրաստել համակարգը</h3>
-                        <p>AweOS-ը հավաքելու համար ձեզ հարկավոր է ունենալ Rust toolchain և հիմնական կոմպիլյատորները։</p>
-                        <pre><code># Տեղադրել անհրաժեշտ գործիքները
-$ rustup target add x86_64-unknown-none
-$ sudo apt install build-essential bison flex libgmp3-dev libmpfr-dev libmpc-dev</code></pre>
-                    </div>
-                    <div id="compile" class="tab-panel">
-                        <h3>Միջուկի Build տարբերակը</h3>
-                        <p>Անցեք CellKernel թղթապանակ և գործարկեք հետևյալ հրամանները` ISO ֆայլը ստանալու համար։</p>
-                        <pre><code># Հավաքել նախագիծը
-$ cargo build --release
-# Ստեղծել bootable ISO հնարավորություն
-$ make iso</code></pre>
-                    </div>
+                <div class="calc-results">
+                    <table class="tech-table">
+                        <tr>
+                            <th>Բաղադրիչ</th>
+                            <th>Բինար (Binary) Բիթեր</th>
+                            <th>Ինդեքս (Dec)</th>
+                        </tr>
+                        <tr>
+                            <td>Page Directory Index (Bits 22-31)</td>
+                            <td id="res-pdi-bin">-</td>
+                            <td id="res-pdi-dec">-</td>
+                        </tr>
+                        <tr>
+                            <td>Page Table Index (Bits 12-21)</td>
+                            <td id="res-pti-bin">-</td>
+                            <td id="res-pti-dec">-</td>
+                        </tr>
+                        <tr>
+                            <td>Page Offset (Bits 0-11)</td>
+                            <td id="res-off-bin">-</td>
+                            <td id="res-off-dec">-</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="source" class="source-section">
+    <section id="docs" class="section bg-alt">
         <div class="container">
-            <h2 class="section-title">Ռեպոզիտորիաներ</h2>
-            <div class="repo-grid">
-                <div class="repo-card">
-                    <div class="repo-meta">
-                        <h4>AweOS / Main</h4>
-                        <span class="repo-badge">Public</span>
-                    </div>
-                    <p>Օպերացիոն համակարգի գլխավոր բազան, համակարգային ֆայլերը և UI շերտը։</p>
-                    <a href="https://github.com" target="_blank" class="repo-link">Անցնել Ռեպոզիտորիա <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            <h2 class="tech-title">Low-Level Code Snippets & IDT Setup</h2>
+            <div class="code-grid">
+                <div class="code-box">
+                    <h4>Rust: Handling Interrupts (IDT Entry)</h4>
+                    <pre><code>#[no_mangle]
+pub extern "x86-interrupt" fn keyboard_interrupt_handler(
+    _stack_frame: InterruptStackFrame
+) {
+    let mut port = Port::new(0x60); // Read scan code
+    let scancode: u8 = unsafe { port.read() };
+    
+    CellKernel::Interrupts::pic_signal_end(IRQ_KEYBOARD);
+}</code></pre>
                 </div>
-                <div class="repo-card">
-                    <div class="repo-meta">
-                        <h4>AweOS / CellKernel</h4>
-                        <span class="repo-badge kernel">Kernel</span>
-                    </div>
-                    <p>Rust-ով գրված սուրբ միջուկը։ Կապ hardware-ի հետ, interrupts և paging հիշողություն։</p>
-                    <a href="https://github.com" target="_blank" class="repo-link">Անցնել Ռեպոզիտորիա <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <div class="code-box">
+                    <h4>Assembly: Context Switching (`switch.asm`)</h4>
+                    <pre><code>global context_switch
+context_switch:
+    mov [rdi + 0], rsp    ; Save old stack pointer
+    mov rsp, [rsi + 0]    ; Load new stack pointer
+    push rbp
+    popf                  ; Restore flags register
+    ret</code></pre>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="main-footer">
-        <div class="container">
-            <p>&copy; 2026 AweOS Project. Բոլոր իրավունքները պաշտպանված են։</p>
-        </div>
+    <footer class="tech-footer">
+        <p>AweOS Architecture Platform // Ring 0 Protected Mode // Year 2026</p>
     </footer>
 
     <script src="script.js"></script>
