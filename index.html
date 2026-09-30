@@ -1,11 +1,113 @@
 <!doctype html>
 <html lang="hy">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="AWE — AWE էկոհամակարգի գլխավոր ստատիկ կայքը"><title>AWE — AWE էկոհամակարգ</title>
-<link rel="stylesheet" href="style.css"></head>
-<body><div class="bg-grid"></div>
-<header class="topbar"><a class="brand" href="#/"><span class="brand-mark">A</span><span>AWE</span></a>
-<nav><a href="#/">Գլխավոր</a><a href="#/projects">Նախագծեր</a><a href="#/archive">Արխիվ</a><a href="https://github.com/ARARAT33/AWE" target="_blank" rel="noopener">GitHub ↗</a></nav></header>
-<main id="app" aria-live="polite"></main>
-<footer><div><strong>AWE</strong> · AWE էկոհամակարգի գլխավոր կայք</div><div id="footer-status">Static • Data-driven • Open</div></footer>
-<script src="script.js"></script></body></html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="AWE — AWE էկոհամակարգի գլխավոր կայք">
+  <meta name="theme-color" content="#070a12">
+  <title>AWE — AWE էկոհամակարգ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-grid"></div>
+
+  <header class="topbar">
+    <a class="brand" href="./"><span class="brand-mark">A</span><span>AWE</span></a>
+    <nav aria-label="Հիմնական նավիգացիա">
+      <a href="./">Գլխավոր</a>
+      <a href="./#projects">Նախագծեր</a>
+      <a href="./#archive">Արխիվ</a>
+      <a href="https://github.com/ARARAT33/AWE" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="eyebrow">AWE ECOSYSTEM · STATIC HOME</div>
+        <h1>Բարի գալուստ <span>AWE</span></h1>
+        <p>
+          AWE-ի գլխավոր կայքը՝ որպես ամբողջ էկոհամակարգի կենտրոնական մուտք։
+          Կայքի նախագծերը, արխիվը և առանձին նյութերը կառուցվում են
+          <strong>AWEArchiveDB</strong>-ի <code>awedb.json</code> տվյալների հիման վրա։
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="#projects">Դիտել նախագծերը →</a>
+          <a class="btn" href="https://github.com/ARARAT33/AWEArchiveDB/blob/main/awedb.json" target="_blank" rel="noopener noreferrer">Բացել AWE DB ↗</a>
+        </div>
+      </div>
+
+      <div class="orbit" aria-hidden="true">
+        <div class="core">AWE</div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">ARCHITECTURE</div>
+          <h2>Մեկ կենտրոն, բազմաթիվ նախագծեր</h2>
+        </div>
+        <span class="muted">100% static</span>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><b>01</b><span>Գլխավոր կայք</span></div>
+        <div class="stat"><b>∞</b><span>Նախագծերի կառուցվածք</span></div>
+        <div class="stat"><b>JSON</b><span>Միասնական տվյալների աղբյուր</span></div>
+        <div class="stat"><b>0</b><span>Backend սերվեր</span></div>
+      </div>
+
+      <div class="grid" style="margin-top:14px">
+        <a class="card" href="https://github.com/ARARAT33/AWE" target="_blank" rel="noopener noreferrer">
+          <div class="card-icon">A</div>
+          <h3>AWE Core</h3>
+          <p>AWE էկոհամակարգի գլխավոր կայքի և ինտերֆեյսի հիմքը։</p>
+          <div class="tags"><span class="tag">STATIC</span><span class="tag">GITHUB</span></div>
+        </a>
+
+        <a class="card" href="https://github.com/ARARAT33/AWEArchiveDB" target="_blank" rel="noopener noreferrer">
+          <div class="card-icon">DB</div>
+          <h3>AWEArchiveDB</h3>
+          <p>Միասնական տվյալների շերտ, որտեղից կայքը կարող է կառուցել նախագծերի և ֆայլերի էջերը։</p>
+          <div class="tags"><span class="tag">awedb.json</span><span class="tag">DATA</span></div>
+        </a>
+
+        <a class="card" href="#archive">
+          <div class="card-icon">↗</div>
+          <h3>AWE Archive</h3>
+          <p>Արխիվային նյութերի համար նախատեսված ընդհանուր մուտք և կառուցվածք։</p>
+          <div class="tags"><span class="tag">ARCHIVE</span><span class="tag">OPEN</span></div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="archive">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">DATA FLOW</div>
+          <h2>Ինչպես է կառուցվում AWE-ը</h2>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="kv"><b>1 · Աղբյուր</b><span>AWEArchiveDB / <code>awedb.json</code></span></div>
+        <div class="kv"><b>2 · Կառուցվածք</b><span>Յուրաքանչյուր repository կամ file կարող է դառնալ առանձին AWE էջ և քարտ։</span></div>
+        <div class="kv"><b>3 · Տվյալներ</b><span>Անվանումը, տեսակը, հղումը և առկա metadata-ն ներկայացվում են էջում։</span></div>
+        <div class="kv"><b>4 · Hosting</b><span>HTML + CSS + JavaScript՝ առանց backend-ի և առանց պարտադիր build server-ի։</span></div>
+        <div class="kv"><b>5 · Աղբյուրի հղում</b><span><a href="https://raw.githubusercontent.com/ARARAT33/AWEArchiveDB/refs/heads/main/awedb.json" target="_blank" rel="noopener noreferrer">raw.githubusercontent.com/.../awedb.json ↗</a></span></div>
+      </div>
+
+      <div class="empty" style="margin-top:14px">
+        <strong>AWEArchiveDB-ի ընթացիկ awedb.json-ը դեռ դատարկ է։</strong><br>
+        Երբ այնտեղ ավելացվեն repository/file գրառումները, դրանք կարող են ավտոմատ հայտնվել AWE-ի նախագծային էջերում՝ առանց backend-ի։
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div><strong>AWE</strong> · AWE էկոհամակարգի գլխավոր կայք</div>
+    <div>Static • Data-driven • Open</div>
+  </footer>
+</body>
+</html>
