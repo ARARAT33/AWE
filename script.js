@@ -1,85 +1,16 @@
-// 1. Architecture Map Data
-const archData = {
-    user: {
-        title: "User Space (Ring 3) Execution",
-        text: "Այստեղ աշխատում են սովորական ծրագրերը։ Նրանք չունեն ուղիղ հասանելիություն RAM-ին կամ I/O պորտերին։ Երբ ծրագրին պետք է ֆայլ կարդալ կամ հիշողություն ուզել, այն կատարում է `syscall` հրամանը՝ կառավարումը հանձնելով CellKernel-ին։"
-    },
-    kernel: {
-        title: "CellKernel Core Operations (Ring 0)",
-        text: "Օպերացիոն համակարգի ամենապաշտպանված հատվածը։ Ունի լրիվ վերահսկողություն CPU-ի վրա։ Այստեղ Rust-ով գրված մոդուլները կառավարում են IDT-ն (Interrupts Descriptor Table), էջավորումը (CR3 register mapping) և թելերը (thread scheduler)։"
-    },
-    hardware: {
-        title: "Physical / Virtual Hardware Interfacing",
-        text: "Ֆիզիկական պրոցեսորը և մայրական սալիկը։ CellKernel-ը ծրագրավորում է APIC-ը (Advanced Programmable Interrupt Controller) ժամանակաչափի (Timer) համար և հաղորդակցվում է MMU-ի (Memory Management Unit) հետ՝ հասցեները թարգմանելու համար։"
-    }
-};
-
-function showArchDetails(layer) {
-    const box = document.getElementById("arch-details");
-    box.innerHTML = `<h3><i class="fa-solid fa-microchip"></i> ${archData[layer].title}</h3><p style="margin-top:10px; color:#cbd5e1;">${archData[layer].text}</p>`;
-}
-
-// 2. Live Kernel Log Monitor
-function triggerLog(type) {
-    const screen = document.getElementById("terminal-log");
-    const timestamp = (window.performance.now() / 1000).toFixed(6);
-    let message = "";
-
-    if (type === 'irq') {
-        const irqVector = Math.floor(Math.random() * 16);
-        message = `<p class="system-msg" style="color:#4ade80;">[${timestamp}] [IRQ] Hardware Interrupt caught at vector 0x0${irqVector.toString(16).toUpperCase()}. Executing ISR...</p>`;
-    } else if (type === 'malloc') {
-        const bytes = Math.floor(Math.random() * 4096);
-        const hexAddr = "0x" + Math.floor(Math.random() * 16777215).toString(16).toUpperCase();
-        message = `<p class="system-msg" style="color:#00f2fe;">[${timestamp}] [MM] kmalloc(${bytes} bytes) -> Allocated successfully at Physical Address ${hexAddr}</p>`;
-    } else if (type === 'panic') {
-        message = `<p class="system-msg" style="color:#ff3333; font-weight:bold;">[${timestamp}] [PANIC] !!! KERNEL PANIC: CRITICAL_PAGE_FAULT at 0x00000000 !!!<br>[${timestamp}] [PANIC] Code: 0x02 (Page not present) | Instruction Pointer: 0x00104A2F<br>[${timestamp}] [PANIC] System halted. Processor entering infinite loop (cli; hlt).</p>`;
-    }
-
-    screen.innerHTML += message;
-    screen.scrollTop = screen.scrollHeight; // Auto-scroll to bottom
-}
-
-function clearTerminal() {
-    document.getElementById("terminal-log").innerHTML = '<p class="system-msg">[INFO] Log buffer cleared. Monitoring active...</p>';
-}
-
-// 3. MMU Virtual Address Calculator
-function calculateAddress() {
-    let input = document.getElementById("hex-address").value.trim();
-    
-    // Հեռացնել 0x նախդիրը եթե կա
-    if(input.startsWith("0x") || input.startsWith("0X")) {
-        input = input.substring(2);
-    }
-
-    // Ստուգել արդյոք վավեր hex է
-    let parsed = parseInt(input, 16);
-    if (isNaN(parsed)) {
-        alert("Խնդրում ենք մուտքագրել վավեր Hex հասցե (օրինակ՝ 0x3A4F1C04)");
-        return;
-    }
-
-    // Ապահովել 32 բիթանոց բինար տեսք
-    let binaryStr = parsed.toString(2).padStart(32, '0');
-
-    // Բաժանում ըստ x86 32-bit Paging սխեմայի (10 + 10 + 12 բիթեր)
-    let pdiBin = binaryStr.substring(0, 10);
-    let ptiBin = binaryStr.substring(10, 22);
-    let offsetBin = binaryStr.substring(22, 32);
-
-    // Փոխակերպում տասնորդականի (Dec)
-    let pdiDec = parseInt(pdiBin, 2);
-    let ptiDec = parseInt(ptiBin, 2);
-    let offsetDec = parseInt(offsetBin, 2);
-
-    // Տվյալների արտացոլում աղյուսակում
-    document.getElementById("res-pdi-bin").innerText = pdiBin.replace(/(.{5})/g, '$1 ');
-    document.getElementById("res-pdi-dec").innerText = pdiDec;
-
-    document.getElementById("res-pti-bin").innerText = ptiBin.replace(/(.{6})/g, '$1 ');
-    document.getElementById("res-pti-dec").innerText = ptiDec;
-
-    document.getElementById("res-off-bin").innerText = offsetBin.replace(/(.{6})/g, '$1 ');
-    document.getElementById("res-off-dec").innerText = offsetDec + ` (0x${offsetDec.toString(16).toUpperCase()})`;
-}
+const DB_URL="https://raw.githubusercontent.com/ARARAT33/AWEArchiveDB/refs/heads/main/awedb.json";
+const app=document.getElementById("app");let db={items:[]};
+const esc=v=>String(v==null?"":v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const arr=v=>Array.isArray(v)?v:(v==null?[]:[v]);
+const slug=v=>String(v==null?"":v).toLowerCase().trim().replace(/[^a-z0-9\u0530-\u058f\u0561-\u0587]+/g,"-").replace(/^-|-$/g,"");
+const first=(o,keys,fallback="")=>{for(const k of keys)if(o&&o[k]!=null&&o[k]!=="")return o[k];return fallback};
+function normalize(raw){if(Array.isArray(raw))raw={items:raw};if(!raw||typeof raw!=="object")return{items:[]};let c=first(raw,["items","projects","repositories","repos","files","entries"],[]);if(!Array.isArray(c))c=Object.entries(raw).map(([name,value])=>typeof value==="object"?{name,...value}:{name,value});return{items:c.map((x,i)=>{if(typeof x==="string")return{name:x,type:"repo",url:x};const name=first(x,["name","title","repo","repository","id"],"item-"+(i+1));const url=first(x,["url","html_url","github","link","href"],"");const type=String(first(x,["type","kind","category"],url.includes("github.com/")?"repo":"file")).toLowerCase();return{...x,name,type,url}})}}
+function layout(title,subtitle,body){return '<div class="page"><div class="crumbs"><a href="#/">AWE</a> / '+esc(title)+'</div><div class="title-row"><div><div class="eyebrow">AWE • STATIC DIRECTORY</div><h1>'+esc(title)+'</h1><p class="muted">'+esc(subtitle||"")+'</p></div></div>'+body+'</div>'}
+function itemCard(x){const id=slug(first(x,["slug","id","name"],"item"));const type=esc(x.type||"item");const desc=first(x,["description","desc","summary","about"],"AWE էկոհամակարգի ռեսուրս");const tags=arr(first(x,["tags","labels","topics"],[])).slice(0,5).map(t=>'<span class="tag">'+esc(t)+'</span>').join("");return '<a class="card" href="#/item/'+encodeURIComponent(id)+'"><div class="card-icon">'+(type==="repo"?"⌘":"◇")+'</div><h3>'+esc(x.name)+'</h3><p>'+esc(desc)+'</p><div class="tags"><span class="tag">'+type+'</span>'+tags+'</div></a>'}
+function home(){const items=db.items,repos=items.filter(x=>x.type==="repo").length,files=items.length-repos;app.innerHTML='<section class="hero"><div><div class="eyebrow">AWE ECOSYSTEM / CORE</div><h1>Մի ամբողջ<br><span>AWE</span> աշխարհ։</h1><p>AWE-ի գլխավոր բաց հարթակը՝ նախագծերի, repository-ների, ֆայլերի և AWEArchiveDB տվյալների մեկ միասնական, արագ ու ամբողջությամբ ստատիկ ինտերֆեյսում։</p><div class="actions"><a class="btn primary" href="#/projects">Բացել նախագծերը →</a><a class="btn" href="#/archive">AWEArchiveDB</a></div></div><div class="orbit"><div class="core">AWE</div></div></section><section class="section"><div class="stats"><div class="stat"><b>'+items.length+'</b><span>ընդհանուր տարր</span></div><div class="stat"><b>'+repos+'</b><span>repository</span></div><div class="stat"><b>'+files+'</b><span>ֆայլ / այլ ռեսուրս</span></div><div class="stat"><b>100%</b><span>ստատիկ ճարտարապետություն</span></div></div></section><section class="section"><div class="section-head"><div><h2>AWE Directory</h2><div class="muted">Տվյալները բեռնվում են AWEArchiveDB-ից՝ առանց backend-ի։</div></div><a class="btn" href="#/projects">Բոլորը →</a></div>'+(items.length?'<div class="grid">'+items.slice(0,6).map(itemCard).join("")+'</div>':'<div class="empty">AWEArchiveDB-ի awedb.json-ը ներկայումս դատարկ է։ Կայքը պատրաստ է ավտոմատ ցուցադրել բոլոր նոր repository-ներն ու ֆայլերը, երբ դրանք ավելացվեն։</div>')+'</section>'}
+function projects(){app.innerHTML=layout("Նախագծեր","AWEArchiveDB-ում գրանցված բոլոր repository-ներն ու ռեսուրսները",'<div class="toolbar"><input id="q" class="search" placeholder="Փնտրել անունով, նկարագրությամբ կամ tag-ով…"><div class="filters"><button class="active" data-filter="all">Բոլորը</button><button data-filter="repo">Repository</button><button data-filter="file">Ֆայլեր</button></div></div><div id="cards" class="grid"></div>');const render=(f="all",q="")=>{const list=db.items.filter(x=>f==="all"||(f==="repo"?x.type==="repo":x.type!=="repo")).filter(x=>JSON.stringify(x).toLowerCase().includes(q.toLowerCase()));document.getElementById("cards").innerHTML=list.length?list.map(itemCard).join(""):'<div class="empty" style="grid-column:1/-1">Ոչինչ չի գտնվել։</div>'};render();document.getElementById("q").oninput=e=>render(document.querySelector(".filters .active").dataset.filter,e.target.value);document.querySelectorAll(".filters button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".filters button").forEach(x=>x.classList.remove("active"));b.classList.add("active");render(b.dataset.filter,document.getElementById("q").value)})}
+function archive(){app.innerHTML=layout("AWEArchiveDB","Կայքի տվյալների աղբյուրը՝ awedb.json",'<div class="panel"><div class="kv"><b>Աղբյուր</b><a href="'+DB_URL+'" target="_blank" rel="noopener">'+DB_URL+'</a></div><div class="kv"><b>Տվյալների քանակ</b><span>'+db.items.length+'</span></div><div class="kv"><b>Ռեժիմ</b><span>100% static / client-side</span></div><div class="kv"><b>Թարմացում</b><span>էջի բացման ժամանակ</span></div></div><div class="section"><div class="section-head"><h2>Բոլոր գրառումները</h2></div>'+(db.items.length?'<div class="grid">'+db.items.map(itemCard).join("")+'</div>':'<div class="empty">Տվյալների բազայում դեռ գրառումներ չկան։</div>')+'</div>')}
+function itemPage(id){const x=db.items.find(v=>slug(first(v,["slug","id","name"]))===id);if(!x){app.innerHTML=layout("Չգտնվեց","Այս տարրը AWEArchiveDB-ում չկա.",'<div class="empty">Վերադարձիր <a href="#/projects">նախագծերի էջ</a>։</div>');return}const pairs=Object.entries(x).filter(([k])=>!["description","desc","summary","about","tags","labels","topics"].includes(k)).map(([k,v])=>{const value=Array.isArray(v)?v.join(", "):typeof v==="object"?JSON.stringify(v):String(v);return '<div class="kv"><b>'+esc(k)+'</b><span>'+esc(value)+'</span></div>'}).join("");const url=first(x,["url","html_url","github","link","href"],"");app.innerHTML=layout(x.name,first(x,["description","desc","summary","about"],"AWE resource"),'<div class="actions">'+(url?'<a class="btn primary" href="'+esc(url)+'" target="_blank" rel="noopener">Բացել աղբյուրը ↗</a>':"")+'<a class="btn" href="#/projects">← Բոլոր նախագծերը</a></div><div class="panel">'+(pairs||'<div class="muted">Այս գրառման համար լրացուցիչ մետատվյալ չկա։</div>')+'</div>')}
+function route(){const parts=location.hash.replace(/^#\/?/,"").split("/").filter(Boolean);if(!parts.length)return home();if(parts[0]==="projects")return projects();if(parts[0]==="archive")return archive();if(parts[0]==="item")return itemPage(decodeURIComponent(parts.slice(1).join("/")));home()}
+async function boot(){try{const r=await fetch(DB_URL,{cache:"no-store"});if(!r.ok)throw Error("HTTP "+r.status);db=normalize(await r.json());document.getElementById("footer-status").textContent="Static • "+db.items.length+" records • AWEArchiveDB"}catch(e){db={items:[]};document.getElementById("footer-status").textContent="Static • DB unavailable"}route()}
+window.addEventListener("hashchange",route);boot();
