@@ -58,9 +58,10 @@ footer{margin-top:80px;border-top:1px solid var(--line);padding:38px 0 50px;colo
 <script>
 (function(){
 try{
-var root=document.documentElement,theme=document.getElementById("theme"),saved=localStorage.getItem("awe-theme")||"auto";
-function apply(){var dark=saved==="dark"||(saved==="auto"&&(new Date().getHours()>=19||new Date().getHours()<7));root.classList.toggle("dark",dark);root.style.colorScheme=dark?"dark":"light";theme.textContent=dark?"☾":"☀"}
-theme.onclick=function(){saved=saved==="auto"?"light":saved==="light"?"dark":"auto";try{localStorage.setItem("awe-theme",saved)}catch(e){}apply()};
+var root=document.documentElement,theme=document.getElementById("theme"),saved=localStorage.getItem("awe-theme")||"light";
+if(saved!=="light"&&saved!=="dark")saved="light";
+function apply(){var dark=saved==="dark";root.classList.toggle("dark",dark);root.style.colorScheme=dark?"dark":"light";theme.textContent=dark?"☾ DARK":"☀ LIGHT"}
+theme.onclick=function(){saved=saved==="light"?"dark":"light";try{localStorage.setItem("awe-theme",saved)}catch(e){}apply()};
 apply();
 }catch(e){}
 document.getElementById("year").textContent=new Date().getFullYear();
