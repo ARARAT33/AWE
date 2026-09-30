@@ -1,5 +1,6 @@
-const DB_URL="https://raw.githubusercontent.com/ARARAT33/AWEArchiveDB/refs/heads/main/awedb.json";
-const app=document.getElementById("app");let db={items:[]};
+const DEFAULT_DB_URL="https://raw.githubusercontent.com/ARARAT33/AWEArchiveDB/refs/heads/main/awedb.json";
+const app=document.getElementById("app");let db={items:[]},activeDbUrl="";
+const getDbUrl=()=>{const p=new URLSearchParams(location.search),q=p.get("db");if(q){try{const u=new URL(q);if(/^https?:$/.test(u.protocol))return u.href}catch{}}return localStorage.getItem("awe-db-url")||DEFAULT_DB_URL};
 const esc=v=>String(v==null?"":v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const arr=v=>Array.isArray(v)?v:(v==null?[]:[v]);
 const slug=v=>String(v==null?"":v).toLowerCase().trim().replace(/[^a-z0-9\u0530-\u058f\u0561-\u0587]+/g,"-").replace(/^-|-$/g,"");
