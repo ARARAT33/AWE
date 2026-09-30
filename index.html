@@ -3,68 +3,68 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="AWE — independent software, web services, creative tools, educational projects and digital archives.">
+<meta name="description" content="AWE — independent software, web services, AI, creative tools, games, education and digital archives.">
 <meta name="theme-color" content="#f7f8fa">
-<title>AWE — Independent Digital Projects</title>
-<link rel="stylesheet" href="assets/site.css">
+<title>AWE — Independent Digital Ecosystem</title>
+<style>
+:root{--bg:#f7f8fa;--surface:#fff;--text:#0b0c0f;--muted:#66707d;--line:#dfe3e8;--accent:#2563eb;--nav:rgba(247,248,250,.92);--shadow:0 18px 55px rgba(15,23,42,.08)}
+html.dark{--bg:#090a0c;--surface:#111318;--text:#f5f7fa;--muted:#9aa3af;--line:#292e37;--nav:rgba(9,10,12,.92);--shadow:0 20px 70px rgba(0,0,0,.32)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}a{color:inherit;text-decoration:none}
+.nav{position:sticky;top:0;z-index:10;background:var(--nav);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.navin{max-width:1180px;height:68px;margin:auto;padding:0 22px;display:flex;align-items:center;gap:24px}.brand{font-size:24px;font-weight:850;letter-spacing:-.05em;margin-right:auto}.links{display:flex;gap:22px}.links a{font-size:14px;color:var(--muted);font-weight:600}.links a:hover{color:var(--text)}
+.controls{display:flex;gap:8px}.control{height:38px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--text);padding:0 10px}
+.wrap{max-width:1180px;margin:auto;padding:0 22px}.hero{padding:105px 0 78px}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}.hero h1{font-size:clamp(46px,8vw,92px);line-height:.98;letter-spacing:-.065em;max-width:920px;margin:0 0 24px}.hero p{font-size:20px;color:var(--muted);max-width:720px;margin:0}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border:1px solid var(--line);border-radius:11px;font-weight:700;font-size:14px}.primary{background:var(--text);color:var(--bg);border-color:var(--text)}
+.section{padding:54px 0}.section h2{font-size:34px;letter-spacing:-.04em;margin:0 0 12px}.lead{color:var(--muted);max-width:700px;margin:0 0 28px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.card{display:block;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:var(--shadow);transition:transform .2s,border-color .2s}.card:hover{transform:translateY(-3px);border-color:#aeb7c4}.tag{display:block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:15px}.card h3{margin:0 0 8px;font-size:20px;letter-spacing:-.025em}.card p{margin:0;color:var(--muted);font-size:14px}
+footer{margin-top:80px;border-top:1px solid var(--line);padding:38px 0 50px;color:var(--muted);font-size:13px}.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:800px){.links{display:none}.grid{grid-template-columns:1fr}.hero{padding-top:72px}.navin{gap:10px}.control{max-width:130px}}
+</style>
 </head>
 <body>
 <header class="nav">
-  <div class="navin">
-    <a class="brand" href="index.html" aria-label="AWE home">AWE</a>
-    <nav class="links" aria-label="Main navigation">
-      <a href="products.html">Products</a>
-      <a href="tools.html">Tools</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    <div class="tools">
-      <select class="select" data-language aria-label="Language"></select>
-      <button class="iconbtn" data-theme title="Theme" aria-label="Theme">◐</button>
-    </div>
-  </div>
+<div class="navin">
+<a class="brand" href="./">AWE</a>
+<nav class="links" aria-label="Main navigation">
+<a href="products.html">Products</a><a href="tools.html">Tools</a><a href="contact.html">Contact</a>
+</nav>
+<div class="controls"><select id="language" class="control" aria-label="Language"><option value="en">English</option><option value="hy">Հայերեն</option><option value="ru">Русский</option></select><button id="theme" class="control" type="button" aria-label="Change theme">◐</button></div>
+</div>
 </header>
-
 <main>
-  <section class="hero wrap reveal">
-    <div class="eyebrow">AWE / Digital ecosystem</div>
-    <h1>Independent products.<br>Built with purpose.</h1>
-    <p>AWE brings together software, web services, AI, creative tools, games, education and digital archives in one independent ecosystem.</p>
-    <div class="actions">
-      <a class="btn primary" href="products.html">Explore products</a>
-      <a class="btn" href="tools.html">Open tools</a>
-    </div>
-  </section>
-
-  <section class="section wrap">
-    <div class="eyebrow">Ecosystem</div>
-    <h2>One home. Many projects.</h2>
-    <p class="sectionlead">Explore the AWE ecosystem through dedicated product pages, practical tools and project-specific resources.</p>
-    <div class="grid">
-      <a class="card reveal" href="products/aweos.html"><span class="tag">Operating system</span><h3>AWEOS</h3><p>A Linux-based operating system designed for everyday users and advanced terminal workflows.</p></a>
-      <a class="card reveal" href="products/awep2p.html"><span class="tag">Network</span><h3>AWEP2P</h3><p>A decentralized direction for communication, storage, hosting and peer-to-peer services.</p></a>
-      <a class="card reveal" href="products/aweai.html"><span class="tag">Artificial intelligence</span><h3>AWEAI</h3><p>An all-in-one direction for practical AI tools, assistants and services.</p></a>
-      <a class="card reveal" href="products/awegame.html"><span class="tag">Games</span><h3>AWEGame</h3><p>A growing collection of lightweight browser games built for instant access.</p></a>
-      <a class="card reveal" href="products/awelibrary.html"><span class="tag">Library</span><h3>AWE Library</h3><p>A digital library and resource hub for books, documents, media and useful links.</p></a>
-      <a class="card reveal" href="products/history.html"><span class="tag">History</span><h3>WORLD HISTORY ARCHIVE</h3><p>A historical archive focused on countries, peoples, languages and preserved materials.</p></a>
-    </div>
-  </section>
-
-  <section class="section wrap">
-    <div class="eyebrow">Explore</div>
-    <div class="grid">
-      <a class="card reveal" href="products.html"><span class="tag">01</span><h3>All products</h3><p>Browse the complete AWE product directory and open any project's dedicated page.</p></a>
-      <a class="card reveal" href="tools.html"><span class="tag">02</span><h3>Free web tools</h3><p>Use practical browser-based tools for everyday tasks without unnecessary setup.</p></a>
-      <a class="card reveal" href="contact.html"><span class="tag">03</span><h3>Contact AWE</h3><p>Find the available ways to reach the project and follow its development.</p></a>
-    </div>
-  </section>
+<section class="hero wrap">
+<div class="eyebrow">AWE / Digital ecosystem</div>
+<h1>Independent products.<br>Built with purpose.</h1>
+<p>AWE brings together software, web services, AI, creative tools, games, education and digital archives in one independent ecosystem.</p>
+<div class="actions"><a class="btn primary" href="products.html">Explore products</a><a class="btn" href="tools.html">Open tools</a></div>
+</section>
+<section class="section wrap">
+<div class="eyebrow">Ecosystem</div><h2>One home. Many projects.</h2><p class="lead">Explore the AWE ecosystem through dedicated product pages, practical tools and project-specific resources.</p>
+<div class="grid">
+<a class="card" href="products/aweos.html"><span class="tag">Operating system</span><h3>AWEOS</h3><p>A Linux-based operating system for everyday users and advanced terminal workflows.</p></a>
+<a class="card" href="products/awep2p.html"><span class="tag">Network</span><h3>AWEP2P</h3><p>A decentralized direction for communication, storage, hosting and peer-to-peer services.</p></a>
+<a class="card" href="products/aweai.html"><span class="tag">Artificial intelligence</span><h3>AWEAI</h3><p>An all-in-one direction for practical AI tools, assistants and services.</p></a>
+<a class="card" href="products/awegame.html"><span class="tag">Games</span><h3>AWEGame</h3><p>A growing collection of lightweight browser games built for instant access.</p></a>
+<a class="card" href="products/awelibrary.html"><span class="tag">Library</span><h3>AWE Library</h3><p>A digital library and resource hub for books, documents, media and useful links.</p></a>
+<a class="card" href="products/history.html"><span class="tag">History</span><h3>WORLD HISTORY ARCHIVE</h3><p>A historical archive focused on countries, peoples, languages and preserved materials.</p></a>
+</div>
+</section>
+<section class="section wrap">
+<div class="eyebrow">Explore</div><div class="grid">
+<a class="card" href="products.html"><span class="tag">01</span><h3>All products</h3><p>Browse the complete AWE product directory.</p></a>
+<a class="card" href="tools.html"><span class="tag">02</span><h3>Free web tools</h3><p>Use practical browser-based tools for everyday tasks.</p></a>
+<a class="card" href="contact.html"><span class="tag">03</span><h3>Contact AWE</h3><p>Find ways to reach the project and follow its development.</p></a>
+</div>
+</section>
 </main>
-
-<footer>
-  <div class="wrap foot">
-    <span>© <span data-year></span> AWE</span>
-    <span>Independent digital projects and services.</span>
-  </div>
-</footer>
-<script src="assets/site.js"></script>
+<footer><div class="wrap foot"><span>© <span id="year"></span> AWE</span><span>Independent digital projects and services.</span></div></footer>
+<script>
+(function(){
+try{
+var root=document.documentElement,theme=document.getElementById("theme"),saved=localStorage.getItem("awe-theme")||"auto";
+function apply(){var dark=saved==="dark"||(saved==="auto"&&(new Date().getHours()>=19||new Date().getHours()<7));root.classList.toggle("dark",dark);root.style.colorScheme=dark?"dark":"light";theme.textContent=dark?"☾":"☀"}
+theme.onclick=function(){saved=saved==="auto"?"light":saved==="light"?"dark":"auto";try{localStorage.setItem("awe-theme",saved)}catch(e){}apply()};
+apply();
+}catch(e){}
+document.getElementById("year").textContent=new Date().getFullYear();
+})();
+</script>
 </body>
 </html>
