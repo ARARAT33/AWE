@@ -14,6 +14,42 @@
 <section class="section" id="lab"><div class="k">04 · AWE Security Lab</div><h2>🧪 Գաղտնագրիր քո տվյալները</h2><p class="sub">Տեքստ կամ ֆայլ գաղտնագրիր հենց բրաուզերում։ Ստեղծվում է <b>.awecrypt</b> փաթեթ, որը նույն էջի «Բացել» ռեժիմով կարելի է վերծանել։ Տվյալները այս էջի JavaScript-ի միջոցով մշակվում են տեղում և չեն ուղարկվում AWE սերվերին։</p><div class="panel"><div class="tabs"><button class="tab active" data-mode="text">📝 Տեքստ</button><button class="tab" data-mode="file">📦 Ֆայլ</button><button class="tab" data-mode="open">🔓 Բացել .awecrypt</button></div><div id="textMode"><textarea class="input" id="plain" rows="7" placeholder="Գրիր այստեղ տեքստը…"></textarea></div><div id="fileMode" hidden><div class="drop" id="drop">📁 Քաշիր ֆայլը այստեղ կամ ընտրիր<br><br><input id="file" type="file"></div><div id="fileInfo" class="status">Ֆայլ ընտրված չէ։</div></div><div id="openMode" hidden><div class="drop">📦 Ընտրիր .awecrypt փաթեթը<br><br><input id="package" type="file" accept=".awecrypt,.json,application/json"></div></div><div style="margin-top:15px"><label>🔑 Գաղտնաբառ</label><input class="input" id="password" type="password" placeholder="Երկար և եզակի գաղտնաբառ"></div><div class="actions" style="justify-content:flex-start"><button class="btn primary" id="encrypt">🔒 Գաղտնագրել</button><button class="btn" id="decrypt">🔓 Վերծանել</button></div><div style="margin-top:18px"><div class="meter"><i id="progress"></i></div><div class="status" id="labStatus">Պատրաստ է։</div></div><div class="row" style="margin-top:18px"><div><h4>Մուտք</h4><div class="out" id="inputOut">—</div></div><div><h4>Արդյունք</h4><div class="out" id="outputOut">—</div></div></div></div><div class="panel"><h3>🛡️ Տեխնիկական շղթա</h3><div class="flow"><div class="node">Password</div><div class="arrow">→</div><div class="node">PBKDF2 + salt</div><div class="arrow">→</div><div class="node">AES-256-GCM</div><div class="arrow">→</div><div class="node">.awecrypt</div></div><p class="muted small">Գաղտնաբառը փաթեթում չի պահվում։ Գործիքը կրթական/գործնական ցուցադրություն է, ոչ թե բարձրարժեք գաղտնի տվյալների համար անվտանգության աուդիտ անցած համակարգ։</p></div></section>
 <section class="section"><div class="k">05 · Հիմնական հասկացություններ</div><h2>🧩 Երեք բան, որոնք չպետք է խառնել</h2><div class="grid"><div class="card"><h3>🔒 Encryption</h3><p class="muted">Գաղտնիության համար տվյալը վերափոխվում է և կարող է վերականգնվել բանալիով։</p></div><div class="card"><h3>#️⃣ Hash</h3><p class="muted">Թվային մատնահետք է՝ ամբողջականության և այլ խնդիրների համար։</p></div><div class="card"><h3>⚛️ QKD</h3><p class="muted">Հիմնականում վերաբերում է գաղտնի բանալու բաշխմանը՝ քվանտային հատկությունների միջոցով։</p></div></div></section>
 
+<section class="section" id="algorithm-lab"><div class="k">04B · Algorithm Laboratory</div><h2>🧰 Ընտրիր ալգորիթմը և փորձարկիր</h2>
+<p class="sub">Ընտրացանկից ընտրիր կոնկրետ մեթոդը։ Գործիքը տարբերակում է իրական browser cryptography API-ով աշխատող ալգորիթմները, ուսումնական cipher-ները և այն մեթոդները, որոնք այս էջում չեն իրականացվում։</p>
+<div class="panel">
+<div class="row">
+<div><label><b>🔐 Ալգորիթմ / մեթոդ</b></label>
+<select class="input" id="algoSelect" style="margin-top:8px">
+<option value="aesgcm">AES-256-GCM · սիմետրիկ authenticated encryption</option>
+<option value="aescbc">AES-256-CBC · սիմետրիկ encryption</option>
+<option value="aesctr">AES-256-CTR · սիմետրիկ stream-like mode</option>
+<option value="rsa">RSA-OAEP-2048 · public-key encryption</option>
+<option value="ecdh">ECDH P-256 → AES-GCM · hybrid demo</option>
+<option value="hmac">HMAC-SHA-256 · authentication / integrity</option>
+<option value="sha256">SHA-256 · hash</option>
+<option value="sha384">SHA-384 · hash</option>
+<option value="sha512">SHA-512 · hash</option>
+<option value="pbkdf2">PBKDF2-SHA-256 · password KDF</option>
+<option value="hkdf">HKDF-SHA-256 · key derivation</option>
+<option value="caesar">Caesar · classical cipher</option>
+<option value="vigenere">Vigenère · classical cipher</option>
+<option value="xor">XOR · bitwise educational cipher</option>
+<option value="base64">Base64 · encoding</option>
+</select></div>
+<div><label><b>📄 Մուտքային տեքստ</b></label><textarea class="input" id="algoInput" rows="5" style="margin-top:8px">AWE ԹԳՀԳ — Cryptography Lab</textarea></div>
+</div>
+<div class="row" style="margin-top:16px">
+<div><label>🔑 Գաղտնաբառ / բանալի</label><input class="input" id="algoPassword" type="password" value="AWE-demo-password" style="margin-top:8px"></div>
+<div><label>⚙️ Լրացուցիչ արժեք (օր. shift / keyword)</label><input class="input" id="algoExtra" value="3" style="margin-top:8px"></div>
+</div>
+<div class="actions" style="justify-content:flex-start"><button class="btn primary" id="runAlgo">▶️ Գործարկել</button><button class="btn" id="clearAlgo">🧹 Մաքրել</button></div>
+<div id="algoExplain" class="status">Ընտրիր ալգորիթմը։</div><div id="algoResult" class="out" style="margin-top:12px">—</div>
+</div>
+<div class="panel"><h3>📚 Ալգորիթմների քարտեզ</h3><div class="grid">
+<div class="card"><h3>🟢 Իրական Web Crypto</h3><p class="muted">AES-GCM, AES-CBC, AES-CTR, RSA-OAEP, ECDH, HMAC, SHA-2, PBKDF2, HKDF։</p></div>
+<div class="card"><h3>🟡 Ուսումնական</h3><p class="muted">Caesar, Vigenère և պարզ XOR՝ մեխանիզմը հասկանալու համար։ Դրանք ժամանակակից անվտանգ պահեստավորում չեն ապահովում։</p></div>
+<div class="card"><h3>🔵 Encoding</h3><p class="muted">Base64-ը տվյալների ներկայացման ձև է։ Այն գաղտնիություն չի ապահովում և գաղտնագրում չէ։</p></div>
+</div></div></section>
 <section class="section" id="experiments"><div class="k">06 · Open Topic & Experiments</div><h2>🧪 Փորձիր ինքդ․ սովորիր փորձով</h2>
 <p class="sub">Այս բաժինը նախատեսված է ոչ թե միայն կարդալու, այլ փորձելու համար։ Փոխիր մուտքային տվյալները, դիտիր արդյունքը, հետո բացիր հաջորդ փորձը։ Յուրաքանչյուր գործիք աշխատում է հենց բրաուզերում և բացատրում է՝ ինչ է տեղի ունենում։</p>
 <div class="grid">
@@ -88,6 +124,30 @@ async function bitFlipDemo(){let a=0x5a,b=a^1;$('#bitDemo').innerHTML='Սկզբ�
 async function avalancheDemo(){let a=await digest('AWE'),b=await digest('AWE!');let n=0;for(let i=0;i<a.length;i++)if(a[i]!==b[i])n++;$('#avDemo').textContent='AWE\n'+a+'\n\nAWE!\n'+b+'\n\nHex դիրքերից փոփոխված՝ '+n+' / '+a.length}
 function randomDemo(){let a=crypto.getRandomValues(new Uint8Array(16));$('#randDemo').textContent=hex(a)+'\n16 random bytes = '+(a.length*8)+' bits'}
 function strengthDemo(){let s=$('#strengthIn').value,n=s.length,score=Math.min(100,Math.max(0,n*5+(new Set(s).size>n*.7?15:0)+(/[A-Z]/.test(s)?10:0)+(/[0-9]/.test(s)?10:0)+(/[^A-Za-z0-9]/.test(s)?10:0)));$('#strengthBar').style.width=score+'%';$('#strengthText').textContent=score<35?'Շատ թույլ/կարճ':score<65?'Միջին՝ ավելացրու երկարությունը':'Ավելի ուժեղ՝ օգտագործիր երկար և եզակի գաղտնաբառ'}
+const algoInfo={aesgcm:'AES-GCM՝ confidentiality + authentication',aescbc:'AES-CBC՝ encryption only; integrity separately needed',aesctr:'AES-CTR՝ counter mode; integrity separately needed',rsa:'RSA-OAEP՝ public key encrypts, private key decrypts',ecdh:'ECDH՝ Alice/Bob derive the same secret, then AES-GCM encrypts',hmac:'HMAC՝ keyed integrity/authentication, not encryption',sha256:'SHA-256՝ one-way hash',sha384:'SHA-384՝ one-way hash',sha512:'SHA-512՝ one-way hash',pbkdf2:'PBKDF2՝ password → derived key',hkdf:'HKDF՝ key material → derived key',caesar:'Caesar՝ shift substitution',vigenere:'Vigenère՝ repeating-key substitution',xor:'XOR՝ simple reversible bitwise demo',base64:'Base64՝ encoding, not encryption'};
+function bytesToText(a){return new TextDecoder().decode(a)}
+function textBytes(s){return new TextEncoder().encode(s)}
+async function deriveAlgoKey(pass,salt,name='AES-GCM'){let base=await crypto.subtle.importKey('raw',textBytes(pass),{name:'PBKDF2'},false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:150000,hash:'SHA-256'},base,{name,length:256},false,['encrypt','decrypt'])}
+async function runAlgorithm(){
+ const type=$('#algoSelect').value,s=$('#algoInput').value,p=$('#algoPassword').value||'AWE-demo-password',extra=$('#algoExtra').value;
+ $('#algoExplain').textContent=algoInfo[type];$('#algoResult').textContent='Աշխատում է…';
+ try{
+  if(type==='sha256'||type==='sha384'||type==='sha512'){let d=await crypto.subtle.digest(type.toUpperCase().replace('-','-'),textBytes(s));$('#algoResult').textContent=hex(d);return}
+  if(type==='base64'){let enc=btoa(unescape(encodeURIComponent(s)));let dec=decodeURIComponent(escape(atob(enc)));$('#algoResult').textContent='Encoded:\n'+enc+'\n\nDecoded:\n'+dec;return}
+  if(type==='caesar'){let k=Number(extra)||0,o=[...s].map(ch=>{let z=ch.charCodeAt(0);if(z>=65&&z<=90)return String.fromCharCode((z-65+k+260)%26+65);if(z>=97&&z<=122)return String.fromCharCode((z-97+k+260)%26+97);return ch}).join('');$('#algoResult').textContent='Encrypted:\n'+o+'\n\nShift: '+k;return}
+  if(type==='vigenere'){let key=extra||'AWE',j=0,o=[...s].map(ch=>{let z=ch.charCodeAt(0);if(!/[A-Za-z]/.test(ch))return ch;let base=z>=97?97:65,k=key.toUpperCase().charCodeAt(j++%key.length)-65;return String.fromCharCode((z-base+k+26)%26+base)}).join('');$('#algoResult').textContent='Encrypted:\n'+o+'\n\nKeyword: '+key;return}
+  if(type==='xor'){let a=textBytes(s),k=textBytes(p),o=a.map((x,i)=>x^k[i%k.length]);$('#algoResult').textContent='Ciphertext HEX:\n'+hex(o)+'\n\nSame XOR key can reverse the bytes.';return}
+  let salt=crypto.getRandomValues(new Uint8Array(16));
+  if(type==='pbkdf2'){let base=await crypto.subtle.importKey('raw',textBytes(p),{name:'PBKDF2'},false,['deriveBits']);let b=await crypto.subtle.deriveBits({name:'PBKDF2',salt,iterations:150000,hash:'SHA-256'},base,256);$('#algoResult').textContent='Salt: '+hex(salt)+'\nDerived 256-bit key:\n'+hex(b);return}
+  if(type==='hkdf'){let base=await crypto.subtle.importKey('raw',textBytes(p),{name:'HKDF'},false,['deriveBits']);let b=await crypto.subtle.deriveBits({name:'HKDF',hash:'SHA-256',salt,info:textBytes('AWE-TGHG')},base,256);$('#algoResult').textContent='Salt: '+hex(salt)+'\nHKDF output:\n'+hex(b);return}
+  if(type==='hmac'){let key=await crypto.subtle.importKey('raw',textBytes(p),{name:'HMAC',hash:'SHA-256'},false,['sign','verify']);let sig=await crypto.subtle.sign('HMAC',key,textBytes(s));let good=await crypto.subtle.verify('HMAC',key,sig,textBytes(s));$('#algoResult').textContent='Message:\n'+s+'\n\nHMAC:\n'+hex(sig)+'\n\nVerification: '+(good?'VALID ✓':'INVALID ✗');return}
+  if(type==='rsa'){let kp=await crypto.subtle.generateKey({name:'RSA-OAEP',modulusLength:2048,publicExponent:new Uint8Array([1,0,1]),hash:'SHA-256'},true,['encrypt','decrypt']);let ct=await crypto.subtle.encrypt({name:'RSA-OAEP'},kp.publicKey,textBytes(s));let pt=await crypto.subtle.decrypt({name:'RSA-OAEP'},kp.privateKey,ct);$('#algoResult').textContent='Public key → encrypt → ciphertext → private key → decrypt\n\nCiphertext:\n'+hex(ct)+'\n\nRecovered:\n'+bytesToText(pt);return}
+  if(type==='ecdh'){let a=await crypto.subtle.generateKey({name:'ECDH',namedCurve:'P-256'},true,['deriveBits']),b=await crypto.subtle.generateKey({name:'ECDH',namedCurve:'P-256'},true,['deriveBits']);let ka=await crypto.subtle.deriveBits({name:'ECDH',public:b.publicKey},a.privateKey,256),kb=await crypto.subtle.deriveBits({name:'ECDH',public:a.publicKey},b.privateKey,256);let raw=new Uint8Array(ka),iv=crypto.getRandomValues(new Uint8Array(12)),aes=await crypto.subtle.importKey('raw',raw,{name:'AES-GCM'},false,['encrypt','decrypt']);let ct=await crypto.subtle.encrypt({name:'AES-GCM',iv},aes,textBytes(s));$('#algoResult').textContent='Alice secret = Bob secret: '+(hex(ka)===hex(kb)?'YES ✓':'NO')+'\nShared secret:\n'+hex(ka)+'\n\nAES-GCM ciphertext:\n'+hex(ct)+'\n\nԱյս փորձը ցույց է տալիս key agreement + symmetric encryption շղթան։';return}
+  if(type==='aesgcm'||type==='aescbc'||type==='aesctr'){let iv=crypto.getRandomValues(new Uint8Array(type==='aesgcm'?12:16)),key=await deriveAlgoKey(p,salt,type==='aesgcm'?'AES-GCM':type==='aescbc'?'AES-CBC':'AES-CTR'),params=type==='aesgcm'?{name:'AES-GCM',iv}:type==='aescbc'?{name:'AES-CBC',iv}:{name:'AES-CTR',counter:iv,length:64};let ct=await crypto.subtle.encrypt(params,key,textBytes(s));let pt=await crypto.subtle.decrypt(params,key,ct);$('#algoResult').textContent='Salt: '+hex(salt)+'\nIV/Counter: '+hex(iv)+'\nCiphertext:\n'+hex(ct)+'\n\nDecrypted:\n'+bytesToText(pt);return}
+ }catch(e){$('#algoResult').textContent='Սխալ․ '+e.message+'\n\nՓորձիր այլ մուտք կամ ալգորիթմ։'}
+}
+$('#algoSelect').onchange=()=>{$('#algoExplain').textContent=algoInfo[$('#algoSelect').value]};
+$('#runAlgo').onclick=runAlgorithm;$('#clearAlgo').onclick=()=>{$('#algoInput').value='';$('#algoResult').textContent='—'};
 function caesarTool(){let s=$('#caesarIn').value,k=Number($('#caesarShift').value)||0,o=[...s].map(c=>{let z=c.charCodeAt(0);if(z>=65&&z<=90)return String.fromCharCode((z-65+k+260)%26+65);if(z>=97&&z<=122)return String.fromCharCode((z-97+k+260)%26+97);return c}).join('');$('#caesarOut').textContent=o+'\n\nՍա Caesar cipher-ի ուսումնական օրինակ է և անվտանգ գաղտնագրում չէ։'}
 function xorTool(){let s=new TextEncoder().encode($('#xorIn').value),k=new TextEncoder().encode($('#xorKey').value);let o=new Uint8Array(s.length);for(let i=0;i<s.length;i++)o[i]=s[i]^k[i%k.length];$('#xorOut').textContent=hex(o)+'\n\nXOR-ը reversible է նույն key-ով, բայց այս պարզ սխեման ինքնուրույն անվտանգ cipher չէ։'}
 function base64Tool(){let s=$('#b64In').value,e=btoa(unescape(encodeURIComponent(s)));$('#b64Out').textContent=e+'\n\nBase64-ը encoding է, ոչ encryption։'}
