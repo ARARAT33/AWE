@@ -1,133 +1,59 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="AWEONE — the main home of the AWE technology ecosystem.">
-  <title>AWEONE — AWE Technology Ecosystem</title>
-  <link rel="stylesheet" href="/assets/site.css">
-  <style>
-    .aweone-home{position:relative;overflow:hidden}
-    .aweone-home:before{content:"";position:absolute;inset:0 0 auto;height:650px;z-index:-2;
-      background:
-        radial-gradient(circle at 82% 18%,rgba(79,70,229,.18),transparent 24%),
-        radial-gradient(circle at 16% 6%,rgba(14,165,233,.13),transparent 28%),
-        linear-gradient(135deg,#f8fafc 0%,#eef2ff 48%,#f8fafc 100%)}
-    .aweone-home:after{content:"";position:absolute;inset:0 0 auto;height:650px;z-index:-1;opacity:.32;
-      background-image:linear-gradient(rgba(79,70,229,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(79,70,229,.10) 1px,transparent 1px);
-      background-size:54px 54px;mask-image:linear-gradient(to bottom,#000,transparent 88%)}
-    .aweone-header{background:rgba(255,255,255,.72);backdrop-filter:blur(18px)}
-    .aweone-brand{gap:11px}
-    .aweone-logo{width:38px;height:38px;border-radius:12px;display:block;flex:none}
-    .aweone-word{letter-spacing:-.065em}
-    .aweone-hero{min-height:560px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);align-items:center;gap:48px;padding:70px 0 58px}
-    .aweone-kicker{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid #cfd6ff;border-radius:999px;background:rgba(255,255,255,.72);color:#4f46e5;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
-    .aweone-kicker i{width:7px;height:7px;border-radius:50%;background:#4f46e5;box-shadow:0 0 16px #4f46e5;display:block}
-    .aweone-hero h1{max-width:760px;margin:20px 0 20px;font-size:clamp(48px,7vw,88px)}
-    .aweone-hero h1 span{background:linear-gradient(110deg,#4f46e5,#0891b2);-webkit-background-clip:text;background-clip:text;color:transparent}
-    .aweone-hero .lead{max-width:650px}
-    .aweone-visual{min-height:370px;display:grid;place-items:center;position:relative}
-    .aweone-orbit{width:min(360px,78vw);aspect-ratio:1;border-radius:50%;border:1px solid rgba(79,70,229,.22);box-shadow:0 0 100px rgba(79,70,229,.12),inset 0 0 80px rgba(14,165,233,.08);position:relative}
-    .aweone-orbit:before,.aweone-orbit:after{content:"";position:absolute;inset:12%;border:1px solid rgba(14,165,233,.18);border-radius:50%;transform:rotate(28deg) scaleX(.58)}
-    .aweone-orbit:after{inset:25%;transform:rotate(-35deg) scaleX(.62)}
-    .aweone-core{position:absolute;inset:30%;border-radius:30%;background:linear-gradient(145deg,#111827,#4f46e5 58%,#06b6d4);box-shadow:0 22px 70px rgba(79,70,229,.35);display:grid;place-items:center;color:white;font:800 44px Manrope,sans-serif;letter-spacing:-.09em}
-    .aweone-node{position:absolute;width:12px;height:12px;border-radius:50%;background:#4f46e5;box-shadow:0 0 24px rgba(79,70,229,.75)}
-    .n1{top:12%;left:49%}.n2{right:8%;top:47%;background:#0891b2}.n3{bottom:13%;left:28%;background:#111827}.n4{left:7%;top:33%}
-    .aweone-products{padding-top:34px}
-    .aweone-products-head{display:flex;justify-content:space-between;align-items:end;gap:28px;margin-bottom:24px}
-    .aweone-products-head p{max-width:560px;margin:0}
-    .aweone-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
-    .aweone-card{min-height:210px;padding:24px}
-    .aweone-card .iconbox{background:linear-gradient(135deg,#eef0ff,#e0f2fe)}
-    .aweone-card h3{font-size:19px}
-    .aweone-footer{margin-top:64px}
-    @media(max-width:950px){.aweone-hero{grid-template-columns:1fr}.aweone-visual{min-height:300px}.aweone-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:600px){.aweone-hero{padding:50px 0 35px;min-height:0}.aweone-visual{min-height:260px}.aweone-grid{grid-template-columns:1fr}.aweone-products-head{display:block}.aweone-products-head p{margin-top:12px}}
-  </style>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="AWEONE — the home of AWE, its technology vision and products.">
+<title>AWEONE — AWE</title><link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
-  <header class="aweone-header">
-    <a class="brand aweone-brand" href="/">
-      <svg class="aweone-logo" viewBox="0 0 64 64" aria-label="AWEONE logo" role="img">
-        <defs><linearGradient id="aweoneG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f46e5"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs>
-        <rect width="64" height="64" rx="19" fill="url(#aweoneG)"/>
-        <path d="M17 43 26 19h7l4 12 4-12h7L39 43h-7l-3-9-3 9z" fill="white"/>
-        <path d="M22 43h25" stroke="white" stroke-width="3" stroke-linecap="round" opacity=".75"/>
-      </svg>
-      <span class="aweone-word">AWEONE</span>
-    </a>
-    <nav id="nav" class="nav">
-      <a href="#products">Products</a>
-      <a href="/products.html">All products</a>
-      <a href="/tools.html">Tools</a>
-      <a href="/contact.html">Contact</a>
-    </nav>
-    <div class="head-actions">
-      <button class="theme" id="themeBtn" aria-label="Toggle theme">◐</button>
-      <div class="lang-wrap">
-        <button id="langBtn" class="lang-btn">◎ <span id="langCurrent">English</span>⌄</button>
-        <div id="langMenu" class="lang-menu hidden">
-          <input id="langSearch" placeholder="Search languages…" aria-label="Search languages">
-          <div id="langList"></div>
-        </div>
-      </div>
-      <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
-    </div>
-  </header>
+<header class="site-header">
+  <a class="brand awe-brand" href="/"><span class="awe-logo">A</span><span>AWEONE</span></a>
+  <nav id="nav"><a href="#about">AWE</a><a href="#vision">Vision</a><a href="#products">Products</a></nav>
+  <div class="head-actions"><button class="theme" id="themeBtn" aria-label="Toggle theme">◐</button><button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button></div>
+</header>
 
-  <main class="container aweone-home">
-    <section class="aweone-hero">
-      <div>
-        <div class="aweone-kicker"><i></i>AWE technology ecosystem</div>
-        <h1>One home for <span>AWE.</span></h1>
-        <p class="lead">AWEONE is the central home for AWE products, software, tools, archives and technology projects — simple, direct and in one place.</p>
-        <div class="actions">
-          <a class="btn primary" href="#products">Explore AWE products ↗</a>
-          <a class="btn" href="/products.html">View all products</a>
-        </div>
-      </div>
-      <div class="aweone-visual" aria-hidden="true">
-        <div class="aweone-orbit">
-          <span class="aweone-node n1"></span><span class="aweone-node n2"></span><span class="aweone-node n3"></span><span class="aweone-node n4"></span>
-          <div class="aweone-core">AWE</div>
-        </div>
-      </div>
-    </section>
+<main>
+<section class="home-hero container">
+  <div class="hero-copy">
+    <div class="eyebrow">AWEONE · AWE technology ecosystem</div>
+    <h1>Building a world of <span>independent technology.</span></h1>
+    <p class="lead">AWEONE is the home of AWE — a technology ecosystem built around software, operating systems, AI, computing, creative tools, knowledge and independent digital products.</p>
+    <div class="actions"><a class="btn primary" href="#about">Discover AWE</a><a class="btn" href="/products.html">Explore all products</a></div>
+  </div>
+  <div class="hero-art"><img src="/assets/visual-awe-core.svg" alt="Abstract AWE technology visual"></div>
+</section>
 
-    <section id="products" class="aweone-products">
-      <div class="aweone-products-head">
-        <div>
-          <div class="eyebrow">AWE products</div>
-          <h2>Everything in one place.</h2>
-        </div>
-        <p>The current AWE product ecosystem, presented directly from the projects already in the repository.</p>
-      </div>
+<section id="about" class="split-section container">
+  <div class="section-copy"><div class="eyebrow">About AWEONE</div><h2>AWE is the ecosystem. AWEONE is its home.</h2><p>AWE brings together independent projects under one clear identity. AWEONE gives those projects one place to live, discover and evolve.</p><p>The goal is simple: create useful technology, connect the pieces and keep the experience direct.</p></div>
+  <div class="image-frame"><img src="/assets/visual-network.svg" alt="Connected network representing the AWE ecosystem"></div>
+</section>
 
-      <section class="grid aweone-grid">
-        <a class="card aweone-card" href="/products/aweos.html"><div class="iconbox">✳</div><h3>AWEOS</h3><p>Linux-based desktop operating system</p><span class="card-foot">Explore ↗</span></a>
-        <a class="card aweone-card" href="/products/awep2p.html"><div class="iconbox">✳</div><h3>AWEP2P</h3><p>A peer-to-peer ecosystem</p><span class="card-foot">Explore ↗</span></a>
-        <a class="card aweone-card" href="/products/aweai.html"><div class="iconbox">✳</div><h3>AWEAI</h3><p>A unified collection of AI tools</p><span class="card-foot">Explore ↗</span></a>
-        <a class="card aweone-card" href="/products/awegame.html"><div class="iconbox">✳</div><h3>AWEGame</h3><p>Browser games and gaming experiments</p><span class="card-foot">Explore ↗</span></a>
-        <a class="card aweone-card" href="/products/a2z.html"><div class="iconbox">✳</div><h3>A2Z</h3><p>A structured information directory</p><span class="card-foot">Explore ↗</span></a>
-        <a class="card aweone-card" href="/products/awelibrary.html"><div class="iconbox">✳</div><h3>AWE Library</h3><p>A discovery point for reading materials</p><span class="card-foot">Explore ↗</span></a>
-        <a class="card aweone-card" href="/products/history.html"><div class="iconbox">✳</div><h3>WORLD HISTORY ARCHIVE</h3><p>A source-oriented archive of historical materials</p><span class="card-foot">Explore ↗</span></a>
-        <a class="card aweone-card" href="/products/awec.html"><div class="iconbox">✳</div><h3>AWEC</h3><p>Computing utilities and experiments</p><span class="card-foot">Explore ↗</span></a>
-        <a class="card aweone-card" href="/products/awechip.html"><div class="iconbox">✳</div><h3>AWEChip</h3><p>A hardware and chip initiative</p><span class="card-foot">Explore ↗</span></a>
-        <a class="card aweone-card" href="/products/awestudio.html"><div class="iconbox">✳</div><h3>AWE Studio</h3><p>A creative digital workspace</p><span class="card-foot">Explore ↗</span></a>
-        <a class="card aweone-card" href="/products/awecode.html"><div class="iconbox">✳</div><h3>AWECode</h3><p>Developer tools and coding workflows</p><span class="card-foot">Explore ↗</span></a>
-        <a class="card aweone-card" href="/products/armbooks.html"><div class="iconbox">✳</div><h3>ArmBooks</h3><p>Armenian books and reading resources</p><span class="card-foot">Explore ↗</span></a>
-        <a class="card aweone-card" href="/products/awelinks.html"><div class="iconbox">✳</div><h3>AWELinks</h3><p>A lightweight link hub</p><span class="card-foot">Explore ↗</span></a>
-        <a class="card aweone-card" href="/products/register-aweis.html"><div class="iconbox">✳</div><h3>register-aweis</h3><p>AWE identity registration concept</p><span class="card-foot">Explore ↗</span></a>
-        <a class="card aweone-card" href="/products/aweos-cellkernel.html"><div class="iconbox">✳</div><h3>AWEOS CellKernel</h3><p>An independent kernel research project</p><span class="card-foot">Explore ↗</span></a>
-        <a class="card aweone-card" href="/products/codeeditor.html"><div class="iconbox">✳</div><h3>CodeEditor</h3><p>A browser-based code editor</p><span class="card-foot">Explore ↗</span></a>
-      </section>
-    </section>
-  </main>
+<section id="vision" class="dark-section">
+  <div class="container split-section dark-split">
+    <div class="image-frame"><img src="/assets/visual-future.svg" alt="Futuristic AWE visual"></div>
+    <div class="section-copy"><div class="eyebrow">The AWE vision</div><h2>One ecosystem. Many ideas.</h2><p>From operating systems and AI to games, code, archives and hardware research, AWE is designed as a growing family of focused projects.</p><a class="text-link" href="/products.html">See the complete AWE ecosystem ↗</a></div>
+  </div>
+</section>
 
-  <footer class="footer aweone-footer">
-    <span>© AWEONE · AWE Technology Ecosystem</span>
-    <span><a href="#products">Products</a>　<a href="/products.html">All products</a>　<a href="/tools.html">Tools</a>　<a href="/contact.html">Contact</a></span>
-  </footer>
-  <script src="/assets/site.js"></script>
-</body>
-</html>
+<section id="products" class="container product-showcase">
+  <div class="section-heading"><div><div class="eyebrow">AWE products</div><h2>Projects made to work together.</h2></div><a class="btn" href="/products.html">All products ↗</a></div>
+  <div class="image-wide"><img src="/assets/visual-products.svg" alt="AWE product ecosystem visualization"></div>
+  <div class="mini-grid">
+    <div class="mini-card"><b>AWEOS</b><span>Operating system</span></div>
+    <div class="mini-card"><b>AWEAI</b><span>AI tools</span></div>
+    <div class="mini-card"><b>AWEP2P</b><span>Peer-to-peer</span></div>
+    <div class="mini-card"><b>AWECode</b><span>Developer tools</span></div>
+    <div class="mini-card"><b>AWEChip</b><span>Hardware</span></div>
+    <div class="mini-card"><b>AWE Studio</b><span>Creative workspace</span></div>
+  </div>
+</section>
+
+<section class="closing container">
+  <div><div class="eyebrow">AWEONE</div><h2>The front door to AWE.</h2><p>Everything AWE, in one clean place.</p></div>
+  <a class="btn primary" href="/products.html">Enter the ecosystem ↗</a>
+</section>
+</main>
+
+<footer class="site-footer"><span>© AWEONE · AWE</span><nav><a href="#about">About</a><a href="#vision">Vision</a><a href="/products.html">Products</a></nav></footer>
+<script src="/assets/site.js"></script>
+</body></html>
