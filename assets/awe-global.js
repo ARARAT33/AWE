@@ -23,16 +23,14 @@ function installAwePointer(){
 }
 
 function installSharedChrome(){
- if(!document.querySelector('.awe-site-nav')){
-  const nav=document.createElement('nav');nav.className='awe-site-nav';nav.setAttribute('aria-label','Main navigation');
-  nav.innerHTML='<a class="awe-site-brand" href="/" aria-label="AWEONE home"><span class="awe-site-mark">A</span><span>AWEONE</span></a><div class="awe-site-links"><a href="/">Home</a><a href="/products.html">Products</a><a href="/playground.html">Playground</a><a href="/docs.html">Docs</a><a href="/school.html">School</a></div><a class="awe-site-cta" href="/project.html">Project guides ↗</a>';
-  document.body.prepend(nav);
- }
- if(!document.querySelector('.awe-site-footer')){
-  const footer=document.createElement('footer');footer.className='awe-site-footer';
-  footer.innerHTML='<a class="awe-footer-brand" href="/">AWEONE</a><span>Ideas into experiences.</span><div><a href="/products.html">Products</a><a href="/playground.html">Playground</a><a href="/docs.html">Documentation</a><a href="/school.html">AWE School</a></div><small>© '+new Date().getFullYear()+' AWEONE</small>';
-  document.body.append(footer);
- }
+ /* Remove page-specific chrome so every page uses one shared header and footer. */
+ document.querySelectorAll('body > header, body > footer, body > nav.awe-site-nav, body > footer.awe-site-footer').forEach(el=>el.remove());
+ const nav=document.createElement('nav');nav.className='awe-site-nav';nav.setAttribute('aria-label','Main navigation');
+ nav.innerHTML='<a class="awe-site-brand" href="/" aria-label="AWEONE home"><span class="awe-site-mark">A</span><span>AWEONE</span></a><div class="awe-site-links"><a href="/">Home</a><a href="/products.html">Products</a><a href="/playground.html">Playground</a><a href="/docs.html">Docs</a><a href="/school.html">School</a></div><a class="awe-site-cta" href="/project.html">Project guides ↗</a>';
+ document.body.prepend(nav);
+ const footer=document.createElement('footer');footer.className='awe-site-footer';
+ footer.innerHTML='<a class="awe-footer-brand" href="/">AWEONE</a><span>Ideas into experiences.</span><div><a href="/products.html">Products</a><a href="/playground.html">Playground</a><a href="/docs.html">Documentation</a><a href="/school.html">AWE School</a></div><small>© '+new Date().getFullYear()+' AWEONE</small>';
+ document.body.append(footer);
 }
 function boot(){installAwePointer();installSharedChrome();let saved='dark';try{saved=localStorage.getItem('awe-theme')||'dark'}catch{}setTheme(saved);const bar=document.createElement('div');bar.className='awe-tools';bar.setAttribute('role','region');bar.setAttribute('aria-label','Display and language settings');bar.innerHTML='<span class="awe-label">AWEONE · YOUR EXPERIENCE</span><label for="awe-language-search">Language</label><input id="awe-language-search" type="search" placeholder="Search languages…" aria-label="Search languages" autocomplete="off"><select id="awe-language" aria-label="Translate page language"></select><button type="button" data-awe-theme-toggle>☼ Light mode</button><span class="awe-translate-status" aria-live="polite">English · Original</span><span id="awe-google-translate"></span>';
 const options=LANGS.map(code=>'<option value="'+code+'">'+nativeName(code)+'</option>').join('');bar.querySelector('select').innerHTML=options;bar.querySelector('select').value='en';bar.querySelector('select').addEventListener('change',e=>translate(e.target.value));const langSearch=bar.querySelector('#awe-language-search'),langSelect=bar.querySelector('#awe-language');langSearch.addEventListener('input',()=>{const q=langSearch.value.trim().toLocaleLowerCase();for(const o of langSelect.options){o.hidden=!!q&&!o.textContent.toLocaleLowerCase().includes(q)&&!o.value.toLocaleLowerCase().includes(q)}});bar.querySelector('button').addEventListener('click',()=>setTheme(document.documentElement.dataset.aweTheme==='dark'?'light':'dark'));document.body.prepend(bar);setTheme(saved);loadTranslateWidget();
