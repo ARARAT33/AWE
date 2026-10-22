@@ -22,7 +22,19 @@ function installAwePointer(){
  const marks=['A','✦','·'];for(let i=0;i<5;i++){const el=document.createElement('span');el.className='awe-float-mark';el.textContent=marks[i%marks.length];el.style.left=(8+i*19)+'%';el.style.top=(18+(i%3)*27)+'%';el.style.animationDelay=(-i*1.4)+'s';el.style.fontSize=(14+(i%3)*9)+'px';document.body.append(el)}
 }
 
-function boot(){installAwePointer();let saved='dark';try{saved=localStorage.getItem('awe-theme')||'dark'}catch{}setTheme(saved);const bar=document.createElement('div');bar.className='awe-tools';bar.setAttribute('role','region');bar.setAttribute('aria-label','Display and language settings');bar.innerHTML='<span class="awe-label">AWEONE · YOUR EXPERIENCE</span><label for="awe-language">Language</label><select id="awe-language" aria-label="Translate page language"></select><button type="button" data-awe-theme-toggle>☼ Light mode</button><span class="awe-translate-status" aria-live="polite">English · Original</span><span id="awe-google-translate"></span>';
+function installSharedChrome(){
+ if(!document.querySelector('.awe-site-nav')){
+  const nav=document.createElement('nav');nav.className='awe-site-nav';nav.setAttribute('aria-label','Main navigation');
+  nav.innerHTML='<a class="awe-site-brand" href="/" aria-label="AWEONE home"><span class="awe-site-mark">A</span><span>AWEONE</span></a><div class="awe-site-links"><a href="/">Home</a><a href="/products.html">Products</a><a href="/playground.html">Playground</a><a href="/docs.html">Docs</a><a href="/school.html">School</a></div><a class="awe-site-cta" href="/project.html">Project guides ↗</a>';
+  document.body.prepend(nav);
+ }
+ if(!document.querySelector('.awe-site-footer')){
+  const footer=document.createElement('footer');footer.className='awe-site-footer';
+  footer.innerHTML='<a class="awe-footer-brand" href="/">AWEONE</a><span>Ideas into experiences.</span><div><a href="/products.html">Products</a><a href="/playground.html">Playground</a><a href="/docs.html">Documentation</a><a href="/school.html">AWE School</a></div><small>© '+new Date().getFullYear()+' AWEONE</small>';
+  document.body.append(footer);
+ }
+}
+function boot(){installAwePointer();installSharedChrome();let saved='dark';try{saved=localStorage.getItem('awe-theme')||'dark'}catch{}setTheme(saved);const bar=document.createElement('div');bar.className='awe-tools';bar.setAttribute('role','region');bar.setAttribute('aria-label','Display and language settings');bar.innerHTML='<span class="awe-label">AWEONE · YOUR EXPERIENCE</span><label for="awe-language">Language</label><select id="awe-language" aria-label="Translate page language"></select><button type="button" data-awe-theme-toggle>☼ Light mode</button><span class="awe-translate-status" aria-live="polite">English · Original</span><span id="awe-google-translate"></span>';
 const options=LANGS.map(code=>'<option value="'+code+'">'+nativeName(code)+'</option>').join('');bar.querySelector('select').innerHTML=options;bar.querySelector('select').value='en';bar.querySelector('select').addEventListener('change',e=>translate(e.target.value));bar.querySelector('button').addEventListener('click',()=>setTheme(document.documentElement.dataset.aweTheme==='dark'?'light':'dark'));document.body.prepend(bar);setTheme(saved);loadTranslateWidget();
 if(!document.querySelector('meta[name="color-scheme"]')){const m=document.createElement('meta');m.name='color-scheme';m.content='dark light';document.head.appendChild(m)}
 }
