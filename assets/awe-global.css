@@ -1,0 +1,53 @@
+/* AWE shared visual system: accessible light/dark themes and global utility styles */
+:root{--awe-bg:#080b16;--awe-panel:#111729;--awe-line:#29334c;--awe-text:#f4f7ff;--awe-muted:#a7b2cb;--awe-accent:#9b8cff;--awe-cyan:#6ee7f9}
+html[data-awe-theme="light"]{color-scheme:light;--awe-bg:#f4f7fc;--awe-panel:#fff;--awe-line:#d9e1ef;--awe-text:#172033;--awe-muted:#52617b;--awe-accent:#5b45d6;--awe-cyan:#087e9b}
+html[data-awe-theme="light"] body{background:#f4f7fc!important;color:#172033!important}
+html[data-awe-theme="light"] header,html[data-awe-theme="light"] .top{background:#ffffffed!important;border-color:#d9e1ef!important}
+html[data-awe-theme="light"] .card,html[data-awe-theme="light"] .panel,html[data-awe-theme="light"] .block,html[data-awe-theme="light"] .lesson,html[data-awe-theme="light"] .chapter,html[data-awe-theme="light"] .repo,html[data-awe-theme="light"] .editor,html[data-awe-theme="light"] .side,html[data-awe-theme="light"] .school{background:#fff!important;border-color:#d9e1ef!important;color:#172033!important;box-shadow:0 8px 28px #26395b0c}
+html[data-awe-theme="light"] p,html[data-awe-theme="light"] li,html[data-awe-theme="light"] .muted,html[data-awe-theme="light"] .lead,html[data-awe-theme="light"] .nav,html[data-awe-theme="light"] .footer,html[data-awe-theme="light"] .repo small{color:#52617b!important}
+html[data-awe-theme="light"] textarea,html[data-awe-theme="light"] .search,html[data-awe-theme="light"] input,html[data-awe-theme="light"] select{background:#fff!important;color:#172033!important;border-color:#cbd6e7!important}
+html[data-awe-theme="light"] .editorhead,html[data-awe-theme="light"] .previewhead{background:#eaf0fa!important;color:#172033!important}
+html[data-awe-theme="light"] .code{background:#f0f4fb!important;color:#263b60!important}
+html[data-awe-theme="light"] .btn:not(.primary),html[data-awe-theme="light"] .pill{background:#fff!important;color:#172033!important;border-color:#cbd6e7!important}
+html[data-awe-theme="light"] .primary,html[data-awe-theme="light"] .btn.primary{color:#10162b!important}
+.awe-tools{position:relative;z-index:1000;display:flex;align-items:center;justify-content:flex-end;gap:9px;flex-wrap:wrap;padding:9px max(18px,calc((100vw - 1180px)/2));background:#080b16;border-bottom:1px solid #ffffff18;color:#f4f7ff;font:12px/1.3 system-ui,sans-serif}
+html[data-awe-theme="light"] .awe-tools{background:#fff;border-color:#d9e1ef;color:#172033}
+.awe-tools .awe-label{font-weight:800;letter-spacing:.04em;margin-right:auto;opacity:.85}
+.awe-tools select,.awe-tools button{font:inherit;border:1px solid #ffffff30;border-radius:9px;background:#151d30;color:#f4f7ff;padding:8px 10px;max-width:min(260px,45vw);cursor:pointer}
+html[data-awe-theme="light"] .awe-tools select,html[data-awe-theme="light"] .awe-tools button{background:#f4f7fc;color:#172033;border-color:#cbd6e7}
+.awe-tools button:hover,.awe-tools select:focus-visible{outline:2px solid var(--awe-cyan);outline-offset:2px}
+.awe-tools .awe-translate-status{font-size:11px;opacity:.72;max-width:180px}
+.goog-te-banner-frame,.goog-te-balloon-frame,#goog-gt-tt,.goog-te-gadget-icon{display:none!important}
+body{top:0!important}
+@media(max-width:560px){.awe-tools{justify-content:space-between;gap:6px}.awe-tools .awe-label{width:100%;margin:0}.awe-tools .awe-translate-status{display:none}.awe-tools select{max-width:58vw}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+#awe-google-translate{position:absolute!important;left:-10000px!important;top:auto!important;width:1px!important;height:1px!important;overflow:hidden!important;}
+
+
+/* AWE signature cursor, subtle mouse-following light and floating A-mark. */
+@media (pointer:fine) and (prefers-reduced-motion:no-preference){
+ /* Keep the native pointer visible; the A-mark is a decorative follower. */
+ .awe-cursor{position:fixed;left:0;top:0;width:34px;height:34px;z-index:99999;pointer-events:none;display:grid;place-items:center;transform:translate(-50%,-50%);transition:width .18s,height .18s}
+ .awe-cursor-mark{width:31px;height:31px;display:grid;place-items:center;border-radius:11px 11px 11px 4px;background:linear-gradient(145deg,#fff,#c8c0ff 35%,#7765f0 72%,#2b245e);color:#17152e;font:900 17px/1 system-ui,sans-serif;box-shadow:inset -3px -4px 7px #08091c88,inset 2px 2px 5px #ffffffdd,0 5px 18px #9484ff65;border:1px solid #ffffffb0;transform:rotate(-8deg);transition:transform .18s}
+ .awe-cursor.is-hover .awe-cursor-mark{transform:rotate(0) scale(1.22);box-shadow:0 0 25px #8c7cffb0}
+ .awe-mouse-glow{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(260px circle at var(--awe-mx,50%) var(--awe-my,50%),#8f7dff12,transparent 70%)}
+ .awe-float-mark{position:fixed;pointer-events:none;z-index:1;color:#b4a8ff30;font:800 20px system-ui;will-change:transform;animation:awe-drift 8s ease-in-out infinite}
+ @keyframes awe-drift{0%,100%{translate:0 0;rotate:-10deg}50%{translate:0 -12px;rotate:8deg}}
+}
+@media (pointer:coarse), (prefers-reduced-motion:reduce){.awe-cursor,.awe-mouse-glow,.awe-float-mark{display:none!important}}
+
+/* Unified AWEONE chrome and lively, lightweight cards */
+.awe-site-nav{position:relative;z-index:1001;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:13px max(20px,calc((100vw - 1180px)/2));background:linear-gradient(105deg,#0b1020f5,#17132df5 55%,#0b1d2bf5);border-bottom:1px solid #9c8cff35;color:#f4f7ff;font:13px/1.3 system-ui,sans-serif;box-shadow:0 10px 35px #0002}
+.awe-site-brand,.awe-footer-brand{display:inline-flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.12em;color:inherit;text-decoration:none;white-space:nowrap}
+.awe-site-mark{display:grid;place-items:center;width:30px;height:30px;border-radius:10px;background:linear-gradient(140deg,#fff,#b7aaff 38%,#5c4ad4);color:#11142a;font-size:17px;box-shadow:0 0 24px #8c7cff45}
+.awe-site-links,.awe-site-footer>div{display:flex;align-items:center;justify-content:center;gap:clamp(10px,2vw,25px);flex-wrap:wrap}
+.awe-site-nav a,.awe-site-footer a{color:inherit;text-decoration:none;transition:color .2s,transform .2s}
+.awe-site-nav a:hover,.awe-site-footer a:hover{color:#7ceafa;transform:translateY(-1px)}
+.awe-site-cta{padding:10px 14px;border:1px solid #a99cff75;border-radius:999px;background:#a99cff13;white-space:nowrap}
+.awe-site-footer{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;padding:25px max(20px,calc((100vw - 1180px)/2));margin-top:55px;border-top:1px solid #ffffff20;background:linear-gradient(105deg,#0b1020,#11152a 55%,#0b1d2b);color:#c3cbe0;font:12px/1.6 system-ui,sans-serif}
+.awe-site-footer>span,.awe-site-footer small{color:#8794b1}.awe-site-footer>div{gap:16px}.awe-site-footer .awe-footer-brand{color:#fff;font-size:13px}
+.card,.grid>article,.products>article,.plans>article,.gallery>figure,.cards>article,.task,.lesson,.chapter,.repo{transform-style:preserve-3d;transition:transform .32s cubic-bezier(.2,.8,.2,1),box-shadow .32s,border-color .32s,filter .32s}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){.card:hover,.grid>article:hover,.products>article:hover,.plans>article:hover,.gallery>figure:hover,.cards>article:hover,.lesson:hover,.chapter:hover,.repo:hover{transform:perspective(900px) translateY(-8px) rotateX(2deg) rotateY(-1.5deg) scale(1.012);filter:saturate(1.12);box-shadow:0 24px 65px #05071475,0 0 0 1px #a99cff30}.card:focus-within,.grid>article:focus-within{transform:translateY(-4px);border-color:#a99cff}}
+@media(max-width:760px){.awe-site-nav{gap:10px;flex-wrap:wrap;padding:12px 16px}.awe-site-links{order:3;width:100%;justify-content:space-between;gap:8px}.awe-site-cta{margin-left:auto}.awe-site-footer{align-items:flex-start;flex-direction:column;padding:22px 18px}.awe-site-footer>div{justify-content:flex-start}}
+@media(prefers-reduced-motion:reduce){.card,.grid>article,.products>article,.plans>article,.gallery>figure,.cards>article,.task,.lesson,.chapter,.repo{transition:none!important}}
