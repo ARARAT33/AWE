@@ -27,7 +27,7 @@ body{top:0!important}
 
 /* AWE signature cursor, subtle mouse-following light and floating A-mark. */
 @media (pointer:fine) and (prefers-reduced-motion:no-preference){
- html,body,body *{cursor:none!important}
+ /* Keep the native pointer visible; the A-mark is a decorative follower. */
  .awe-cursor{position:fixed;left:0;top:0;width:34px;height:34px;z-index:99999;pointer-events:none;display:grid;place-items:center;transform:translate(-50%,-50%);transition:width .18s,height .18s}
  .awe-cursor-mark{width:31px;height:31px;display:grid;place-items:center;border-radius:11px 11px 11px 4px;background:linear-gradient(145deg,#fff,#c8c0ff 35%,#7765f0 72%,#2b245e);color:#17152e;font:900 17px/1 system-ui,sans-serif;box-shadow:inset -3px -4px 7px #08091c88,inset 2px 2px 5px #ffffffdd,0 5px 18px #9484ff65;border:1px solid #ffffffb0;transform:rotate(-8deg);transition:transform .18s}
  .awe-cursor.is-hover .awe-cursor-mark{transform:rotate(0) scale(1.22);box-shadow:0 0 25px #8c7cffb0}
@@ -36,3 +36,18 @@ body{top:0!important}
  @keyframes awe-drift{0%,100%{translate:0 0;rotate:-10deg}50%{translate:0 -12px;rotate:8deg}}
 }
 @media (pointer:coarse), (prefers-reduced-motion:reduce){.awe-cursor,.awe-mouse-glow,.awe-float-mark{display:none!important}}
+
+/* Unified AWEONE chrome and lively, lightweight cards */
+.awe-site-nav{position:relative;z-index:1001;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:13px max(20px,calc((100vw - 1180px)/2));background:linear-gradient(105deg,#0b1020f5,#17132df5 55%,#0b1d2bf5);border-bottom:1px solid #9c8cff35;color:#f4f7ff;font:13px/1.3 system-ui,sans-serif;box-shadow:0 10px 35px #0002}
+.awe-site-brand,.awe-footer-brand{display:inline-flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.12em;color:inherit;text-decoration:none;white-space:nowrap}
+.awe-site-mark{display:grid;place-items:center;width:30px;height:30px;border-radius:10px;background:linear-gradient(140deg,#fff,#b7aaff 38%,#5c4ad4);color:#11142a;font-size:17px;box-shadow:0 0 24px #8c7cff45}
+.awe-site-links,.awe-site-footer>div{display:flex;align-items:center;justify-content:center;gap:clamp(10px,2vw,25px);flex-wrap:wrap}
+.awe-site-nav a,.awe-site-footer a{color:inherit;text-decoration:none;transition:color .2s,transform .2s}
+.awe-site-nav a:hover,.awe-site-footer a:hover{color:#7ceafa;transform:translateY(-1px)}
+.awe-site-cta{padding:10px 14px;border:1px solid #a99cff75;border-radius:999px;background:#a99cff13;white-space:nowrap}
+.awe-site-footer{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;padding:25px max(20px,calc((100vw - 1180px)/2));margin-top:55px;border-top:1px solid #ffffff20;background:linear-gradient(105deg,#0b1020,#11152a 55%,#0b1d2b);color:#c3cbe0;font:12px/1.6 system-ui,sans-serif}
+.awe-site-footer>span,.awe-site-footer small{color:#8794b1}.awe-site-footer>div{gap:16px}.awe-site-footer .awe-footer-brand{color:#fff;font-size:13px}
+.card,.grid>article,.products>article,.plans>article,.gallery>figure,.cards>article,.task,.lesson,.chapter,.repo{transform-style:preserve-3d;transition:transform .32s cubic-bezier(.2,.8,.2,1),box-shadow .32s,border-color .32s,filter .32s}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){.card:hover,.grid>article:hover,.products>article:hover,.plans>article:hover,.gallery>figure:hover,.cards>article:hover,.lesson:hover,.chapter:hover,.repo:hover{transform:perspective(900px) translateY(-8px) rotateX(2deg) rotateY(-1.5deg) scale(1.012);filter:saturate(1.12);box-shadow:0 24px 65px #05071475,0 0 0 1px #a99cff30}.card:focus-within,.grid>article:focus-within{transform:translateY(-4px);border-color:#a99cff}}
+@media(max-width:760px){.awe-site-nav{gap:10px;flex-wrap:wrap;padding:12px 16px}.awe-site-links{order:3;width:100%;justify-content:space-between;gap:8px}.awe-site-cta{margin-left:auto}.awe-site-footer{align-items:flex-start;flex-direction:column;padding:22px 18px}.awe-site-footer>div{justify-content:flex-start}}
+@media(prefers-reduced-motion:reduce){.card,.grid>article,.products>article,.plans>article,.gallery>figure,.cards>article,.task,.lesson,.chapter,.repo{transition:none!important}}
