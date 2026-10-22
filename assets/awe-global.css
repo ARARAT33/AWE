@@ -21,3 +21,5 @@ html[data-awe-theme="light"] .awe-tools select,html[data-awe-theme="light"] .awe
 body{top:0!important}
 @media(max-width:560px){.awe-tools{justify-content:space-between;gap:6px}.awe-tools .awe-label{width:100%;margin:0}.awe-tools .awe-translate-status{display:none}.awe-tools select{max-width:58vw}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+#awe-google-translate{position:absolute!important;left:-10000px!important;top:auto!important;width:1px!important;height:1px!important;overflow:hidden!important;}
