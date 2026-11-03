@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="hy">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080d19"><meta name="description" content="AWEONE Services Hub — all AWE Cloudflare Pages projects in one place.">
+<title>AWEONE — Services Hub</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root{color-scheme:dark;--bg:#080d19;--panel:#101a2b;--line:#263751;--text:#edf4ff;--muted:#9eb0c9;--blue:#65b8ff;--mint:#69e0d0}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 12% -10%,#1a3a60 0,transparent 38%),radial-gradient(ellipse at 100% 15%,#153c47 0,transparent 30%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+main{width:min(980px,100%);margin:auto;padding:clamp(18px,4vw,38px) clamp(15px,4vw,28px) calc(28px + env(safe-area-inset-bottom))}
+header{padding:16px 2px 22px}.brand{display:flex;align-items:center;gap:13px}.mark{width:48px;height:48px;border-radius:16px;background:linear-gradient(135deg,#4da9ff,#65e0ce);display:grid;place-items:center;color:#07111e;font-size:23px;font-weight:900;box-shadow:0 8px 30px #42b7e455}
+h1{font-size:clamp(26px,5vw,39px);line-height:1.1;margin:0;letter-spacing:-.045em}.eyebrow{color:var(--mint);font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;margin-bottom:4px}.sub{color:var(--muted);margin:17px 0 0;max-width:660px}
+.toolbar{margin:22px 0 13px}.search{width:100%;background:#0e1828;border:1px solid var(--line);border-radius:14px;padding:13px 15px;color:var(--text);font:inherit;outline:none}.search:focus{border-color:var(--blue);box-shadow:0 0 0 3px #65b8ff20}
+.filters{display:flex;gap:8px;overflow:auto;padding:2px 0 13px;scrollbar-width:none}.filter{border:1px solid var(--line);background:#101a2b;color:var(--muted);padding:8px 13px;border-radius:999px;white-space:nowrap;font:600 13px system-ui;cursor:pointer}.filter.active{background:#183452;border-color:#3d83bd;color:#e8f5ff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,245px),1fr));gap:12px}.card{display:flex;align-items:center;gap:13px;min-height:84px;padding:14px;text-decoration:none;color:inherit;background:linear-gradient(145deg,#142238,#0e1726);border:1px solid var(--line);border-radius:18px;transition:transform .16s,border-color .16s}.card:hover,.card:focus-visible{transform:translateY(-2px);border-color:#4c9bd1;outline:none}.ico{width:45px;height:45px;flex:0 0 45px;border-radius:14px;background:#1b3450;display:grid;place-items:center;font-size:22px}.info{min-width:0;flex:1}.name{display:block;font-weight:750;font-size:16px;letter-spacing:-.02em}.domain{display:block;font-size:12px;color:var(--muted);overflow-wrap:anywhere}.go{color:#81caff;font-size:18px}.empty{display:none;padding:28px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:16px}.foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:#7588a3;font-size:12px;margin-top:25px;padding:15px 2px;border-top:1px solid #1b2a40}.foot a{color:#9bcfff;text-decoration:none}
+@media(max-width:480px){.card{min-height:76px;padding:12px}.ico{width:42px;height:42px;flex-basis:42px}.sub{font-size:14px}}
+</style></head>
+<body><main>
+<header><div class="brand"><div class="mark">A</div><div><div class="eyebrow">AWEONE NETWORK</div><h1>Services Hub</h1></div></div><p class="sub">Բոլոր AWE ծառայությունները մեկ տեղում։ Ընտրիր կայքը՝ այն բացելու համար։ <span>All your AWE services in one place.</span></p></header>
+<div class="toolbar"><input class="search" id="search" type="search" placeholder="Որոնել ծառայություն… / Search services" aria-label="Search services"></div>
+<nav class="filters" aria-label="Categories"><button class="filter active" data-filter="all">Բոլորը · All</button><button class="filter" data-filter="platform">Platforms</button><button class="filter" data-filter="tools">Tools</button><button class="filter" data-filter="projects">Projects</button></nav>
+<section class="grid" id="grid">
+<a class="card" data-category="platform" href="https://aweone.pages.dev"><span class="ico">✦</span><span class="info"><span class="name">AWEONE</span><span class="domain">aweone.pages.dev</span></span><span class="go">↗</span></a>
+<a class="card" data-category="platform" href="https://awe-1k0.pages.dev"><span class="ico">🌐</span><span class="info"><span class="name">AWE</span><span class="domain">awe-1k0.pages.dev</span></span><span class="go">↗</span></a>
+<a class="card" data-category="platform" href="https://aweos.pages.dev"><span class="ico">◈</span><span class="info"><span class="name">AWEOS</span><span class="domain">aweos.pages.dev</span></span><span class="go">↗</span></a>
+<a class="card" data-category="tools" href="https://awelink.pages.dev"><span class="ico">🔗</span><span class="info"><span class="name">AWELink</span><span class="domain">awelink.pages.dev</span></span><span class="go">↗</span></a>
+<a class="card" data-category="tools" href="https://aweocr.pages.dev"><span class="ico">📄</span><span class="info"><span class="name">AWEOCR</span><span class="domain">aweocr.pages.dev</span></span><span class="go">↗</span></a>
+<a class="card" data-category="projects" href="https://awegame.pages.dev"><span class="ico">🎮</span><span class="info"><span class="name">AWEGame</span><span class="domain">awegame.pages.dev</span></span><span class="go">↗</span></a>
+<a class="card" data-category="projects" href="https://awelibrary.pages.dev"><span class="ico">📚</span><span class="info"><span class="name">AWELibrary</span><span class="domain">awelibrary.pages.dev</span></span><span class="go">↗</span></a>
+<a class="card" data-category="projects" href="https://awep2p.pages.dev"><span class="ico">🔄</span><span class="info"><span class="name">AWEP2P</span><span class="domain">awep2p.pages.dev</span></span><span class="go">↗</span></a>
+<a class="card" data-category="projects" href="https://awe-exp.pages.dev"><span class="ico">🧪</span><span class="info"><span class="name">AWE-Exp</span><span class="domain">awe-exp.pages.dev</span></span><span class="go">↗</span></a>
+<a class="card" data-category="tools" href="https://awe-a2z.pages.dev"><span class="ico">🔤</span><span class="info"><span class="name">AWE-A2Z</span><span class="domain">awe-a2z.pages.dev</span></span><span class="go">↗</span></a>
+<a class="card" data-category="tools" href="https://awelib.pages.dev"><span class="ico">🗂️</span><span class="info"><span class="name">AWELib</span><span class="domain">awelib.pages.dev</span></span><span class="go">↗</span></a>
+<a class="card" data-category="projects" href="https://aweschool.pages.dev"><span class="ico">🎓</span><span class="info"><span class="name">AWESchool</span><span class="domain">aweschool.pages.dev</span></span><span class="go">↗</span></a>
+<a class="card" data-category="projects" href="https://awec-33m.pages.dev"><span class="ico">◉</span><span class="info"><span class="name">AWEC</span><span class="domain">awec-33m.pages.dev</span></span><span class="go">↗</span></a>
+<a class="card" data-category="projects" href="https://weos-75d.pages.dev"><span class="ico">▣</span><span class="info"><span class="name">WEOS</span><span class="domain">weos-75d.pages.dev</span></span><span class="go">↗</span></a>
+</section><div class="empty" id="empty">Համընկնումներ չկան։ No matching services.</div>
+<footer class="foot"><span>© AWEONE · Services directory</span><a href="https://aweone.pages.dev">About AWEONE ↗</a></footer>
+</main>
+<script>
+(()=>{const tg=window.Telegram?.WebApp;if(tg){tg.ready();tg.expand();try{tg.setHeaderColor('#080d19');tg.setBackgroundColor('#080d19')}catch(e){}}
+const cards=[...document.querySelectorAll('.card')],search=document.getElementById('search'),empty=document.getElementById('empty');let cat='all';
+function apply(){const q=search.value.trim().toLowerCase();let n=0;cards.forEach(c=>{const ok=(cat==='all'||c.dataset.category===cat)&&c.innerText.toLowerCase().includes(q);c.style.display=ok?'flex':'none';if(ok)n++});empty.style.display=n?'none':'block'}
+search.addEventListener('input',apply);document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{document.querySelector('.filter.active')?.classList.remove('active');b.classList.add('active');cat=b.dataset.filter;apply()}));
+})();
+</script></body></html>
