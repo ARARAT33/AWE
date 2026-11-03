@@ -2,101 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#101827">
-<meta name="color-scheme" content="light dark">
-<meta name="description" content="Explore AWEONE services in one place.">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="refresh" content="0;url=/">
+<link rel="canonical" href="https://awebots.pages.dev/">
 <title>AWEONE Services</title>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-<style>
-:root{
-  color-scheme:light dark;
-  --bg:var(--tg-theme-bg-color,#f3f6fb);
-  --surface:var(--tg-theme-secondary-bg-color,#fff);
-  --text:var(--tg-theme-text-color,#172338);
-  --muted:var(--tg-theme-hint-color,#77849a);
-  --accent:var(--tg-theme-button-color,#3989e8);
-  --accent-text:var(--tg-theme-button-text-color,#fff);
-  --stroke:color-mix(in srgb,var(--text) 9%,transparent);
-  --shadow:0 8px 28px rgba(24,45,78,.07);
-  --radius:20px;
-}
-*{box-sizing:border-box}
-html{min-height:100%;background:var(--bg)}
-body{margin:0;min-height:100vh;min-height:100dvh;background:var(--bg);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased}
-button,input,a{-webkit-tap-highlight-color:transparent}
-.shell{width:min(100%,1040px);margin:0 auto;padding:clamp(14px,3vw,30px);padding-top:max(clamp(14px,3vw,30px),env(safe-area-inset-top));padding-bottom:max(22px,env(safe-area-inset-bottom))}
-.search-wrap{position:sticky;top:0;z-index:5;padding:0 0 16px;background:linear-gradient(var(--bg) 78%,transparent)}
-.search-box{height:54px;display:flex;align-items:center;gap:12px;padding:0 17px;border:1px solid var(--stroke);border-radius:17px;background:var(--surface);box-shadow:var(--shadow);transition:border-color .2s,box-shadow .2s}
-.search-box:focus-within{border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 14%,transparent),var(--shadow)}
-.search-icon{width:20px;height:20px;flex:0 0 20px;color:var(--muted)}
-input{width:100%;height:100%;border:0;outline:0;background:transparent;color:var(--text);font:500 15px/1.2 inherit;font-size:15px}
-input::placeholder{color:var(--muted);opacity:.9}
-.clear{display:none;flex:0 0 28px;width:28px;height:28px;border:0;border-radius:50%;background:color-mix(in srgb,var(--text) 8%,transparent);color:var(--muted);font-size:19px;line-height:1;cursor:pointer}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.service{position:relative;min-width:0;min-height:138px;display:flex;flex-direction:column;justify-content:space-between;gap:17px;padding:16px;border:1px solid var(--stroke);border-radius:var(--radius);background:var(--surface);color:var(--text);text-decoration:none;box-shadow:0 3px 12px rgba(24,45,78,.035);overflow:hidden;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
-.service:before{content:"";position:absolute;inset:0 0 auto;height:3px;background:var(--tone);opacity:.9}
-.service:after{content:"";position:absolute;width:105px;height:105px;right:-46px;top:-48px;border-radius:50%;background:var(--tone);opacity:.075;pointer-events:none}
-.service:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
-.service:active{transform:scale(.985)}
-@media(hover:hover){.service:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--tone) 42%,var(--stroke));box-shadow:0 12px 30px rgba(24,45,78,.10)}}
-.service-top{display:flex;align-items:center;justify-content:space-between;gap:8px;position:relative;z-index:1}
-.glyph{width:48px;height:48px;display:grid;place-items:center;border-radius:15px;background:color-mix(in srgb,var(--tone) 13%,var(--surface));font-size:24px}
-.arrow{width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:color-mix(in srgb,var(--text) 5%,transparent);color:var(--muted);font-size:19px}
-.service-bottom{position:relative;z-index:1;min-width:0}
-.name{display:block;font-size:15px;font-weight:750;letter-spacing:-.25px;line-height:1.25;overflow-wrap:anywhere}
-.desc{display:block;margin-top:4px;color:var(--muted);font-size:11px;line-height:1.35}
-.empty{display:none;padding:34px 16px;text-align:center;color:var(--muted);font-size:14px;border:1px dashed var(--stroke);border-radius:18px}
-@media(min-width:620px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.service{min-height:156px;padding:19px}.glyph{width:52px;height:52px;font-size:26px}.name{font-size:16px}.desc{font-size:12px}}
-@media(min-width:900px){.grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}.shell{padding-top:32px}}
-@media(max-width:350px){.shell{padding-left:11px;padding-right:11px}.grid{gap:9px}.service{padding:13px;min-height:128px}.name{font-size:14px}.desc{font-size:10px}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;scroll-behavior:auto!important}}
-</style>
+<script>location.replace('/');</script>
 </head>
-<body>
-<main class="shell">
-  <div class="search-wrap">
-    <label class="search-box" for="service-search">
-      <svg class="search-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4.2 4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-      <input id="service-search" type="search" placeholder="Search your services…" autocomplete="off" spellcheck="false" aria-label="Search services">
-      <button class="clear" id="clear-search" type="button" aria-label="Clear search">×</button>
-    </label>
-  </div>
-  <section class="grid" id="services" aria-label="AWEONE services">
-    <a class="service" style="--tone:#36a9e8" href="https://aweone.pages.dev"><span class="service-top"><span class="glyph">✦</span><span class="arrow">↗</span></span><span class="service-bottom"><span class="name">AWEONE</span><span class="desc">The connected ecosystem</span></span></a>
-    <a class="service" style="--tone:#8b7cf6" href="https://aweos.pages.dev"><span class="service-top"><span class="glyph">◈</span><span class="arrow">↗</span></span><span class="service-bottom"><span class="name">AWEOS</span><span class="desc">Operating system</span></span></a>
-    <a class="service" style="--tone:#20b6a2" href="https://awelink.pages.dev"><span class="service-top"><span class="glyph">🔗</span><span class="arrow">↗</span></span><span class="service-bottom"><span class="name">AWELink</span><span class="desc">Links and web resources</span></span></a>
-    <a class="service" style="--tone:#e69b45" href="https://aweocr.pages.dev"><span class="service-top"><span class="glyph">📄</span><span class="arrow">↗</span></span><span class="service-bottom"><span class="name">AWEOCR</span><span class="desc">Text recognition</span></span></a>
-    <a class="service" style="--tone:#ec6f91" href="https://awegame.pages.dev"><span class="service-top"><span class="glyph">🎮</span><span class="arrow">↗</span></span><span class="service-bottom"><span class="name">AWEGame</span><span class="desc">Games and interactive projects</span></span></a>
-    <a class="service" style="--tone:#d49b42" href="https://awelibrary.pages.dev"><span class="service-top"><span class="glyph">📚</span><span class="arrow">↗</span></span><span class="service-bottom"><span class="name">AWELibrary</span><span class="desc">Digital library</span></span></a>
-    <a class="service" style="--tone:#3da6c9" href="https://awep2p.pages.dev"><span class="service-top"><span class="glyph">🔄</span><span class="arrow">↗</span></span><span class="service-bottom"><span class="name">AWEP2P</span><span class="desc">Peer-to-peer network</span></span></a>
-    <a class="service" style="--tone:#9b82dc" href="https://awe-exp.pages.dev"><span class="service-top"><span class="glyph">🧪</span><span class="arrow">↗</span></span><span class="service-bottom"><span class="name">AWE-Exp</span><span class="desc">Experiments and prototypes</span></span></a>
-    <a class="service" style="--tone:#4ca77b" href="https://awebots.pages.dev"><span class="service-top"><span class="glyph">🤖</span><span class="arrow">↗</span></span><span class="service-bottom"><span class="name">AWE Bots</span><span class="desc">Bots and automation</span></span></a>
-  </section>
-  <div class="empty" id="empty" role="status">No matching services</div>
-</main>
-<script>
-(()=> {
-  const tg=window.Telegram?.WebApp;
-  if(tg){tg.ready();tg.expand();try{tg.setHeaderColor('secondary_bg_color');tg.setBackgroundColor('bg_color')}catch(e){}}
-  const input=document.getElementById('service-search');
-  const clear=document.getElementById('clear-search');
-  const cards=[...document.querySelectorAll('.service')];
-  const empty=document.getElementById('empty');
-  function filter(){
-    const q=input.value.trim().toLocaleLowerCase();
-    let shown=0;
-    cards.forEach(card=>{
-      const match=card.innerText.toLocaleLowerCase().includes(q);
-      card.hidden=!match;
-      if(match)shown++;
-    });
-    empty.style.display=shown?'none':'block';
-    clear.style.display=q?'grid':'none';
-  }
-  input.addEventListener('input',filter);
-  clear.addEventListener('click',()=>{input.value='';filter();input.focus()});
-})();
-</script>
-</body>
+<body><p>Opening <a href="/">AWEONE Products &amp; Services</a>…</p></body>
 </html>
