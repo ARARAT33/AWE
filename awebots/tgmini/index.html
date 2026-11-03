@@ -42,10 +42,9 @@ main{padding:14px}.intro{padding:4px 3px 16px}.intro h1{font-size:23px;letter-sp
 </main>
 </div>
 <script>
-(()=>{const tg=window.Telegram?.WebApp;if(tg){tg.ready();tg.expand();try{tg.setHeaderColor('#202b36');tg.setBackgroundColor('#17212b');tg.enableClosingConfirmation()}catch(e){}}
-const search=document.getElementById('search'),items=[...document.querySelectorAll('.item')],empty=document.getElementById('empty'),count=document.getElementById('count');
-search.addEventListener('input',()=>{const q=search.value.trim().toLowerCase();let n=0;items.forEach(item=>{const show=item.innerText.toLowerCase().includes(q);item.style.display=show?'flex':'none';if(show)n++});empty.style.display=n?'none':'block';count.textContent=n+' service'+(n===1?'':'s')});
-document.querySelectorAll('.tab').forEach(tab=>tab.addEventListener('click',()=>{document.querySelector('.tab.active')?.classList.remove('active');tab.classList.add('active');if(tab.dataset.tab==='home'){search.value='';search.dispatchEvent(new Event('input'));window.scrollTo({top:0,behavior:'smooth'})}else if(tab.dataset.tab==='about'){if(tg?.showPopup)tg.showPopup({title:'AWEONE Mini',message:'A compact launcher for AWEONE services. External services open in Telegram or your browser.',buttons:[{type:'ok'}]});else alert('A compact launcher for AWEONE services.')}else{window.scrollTo({top:0,behavior:'smooth'})}}));
+(()=>{const tg=window.Telegram?.WebApp;if(tg){tg.ready();tg.expand();try{tg.setHeaderColor('#17212b');tg.setBackgroundColor('#17212b')}catch(e){}}
+const search=document.getElementById('search'),items=[...document.querySelectorAll('.item')],empty=document.getElementById('empty');
+search.addEventListener('input',()=>{const q=search.value.trim().toLowerCase();let n=0;items.forEach(item=>{const show=item.innerText.toLowerCase().includes(q);item.style.display=show?'flex':'none';if(show)n++});empty.style.display=n?'none':'block'});
 })();
 </script>
 </body>
